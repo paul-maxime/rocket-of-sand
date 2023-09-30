@@ -7,15 +7,6 @@ var grid = Vector2i(50, 100)
 func _ready():
 	increase_water_level()
 
-func _input(event):
-	if event is InputEventMouseButton:
-		if (event.pressed):
-			increase_water_level()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func increase_water_level():
 	if (water_level + 1 >= get_layers_count()):
 		return
