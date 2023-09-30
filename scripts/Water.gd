@@ -18,7 +18,7 @@ func _process(delta):
 
 func increase_water_level():
 	if (water_level + 1 >= get_layers_count()):
-		pass
+		return
 	water_level += 1
 	for x in range(-grid.x / 2, grid.x / 2):
 		for y in range(-grid.y / 2, grid.y / 2):
