@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dkgkeifm26gm7"]
+[gd_scene load_steps=17 format=3 uid="uid://dkgkeifm26gm7"]
 
 [ext_resource type="Material" uid="uid://ckhhgojge2pjb" path="res://materials/water.tres" id="1_14h4f"]
 [ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="1_n6nwv"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="3_5rtui"]
 [ext_resource type="Texture2D" uid="uid://co1dhywe57swo" path="res://resources/rocket.png" id="4_2y4em"]
 [ext_resource type="Script" path="res://scripts/ResourcesManager.gd" id="4_o16af"]
+[ext_resource type="Theme" uid="uid://dkipchea646ox" path="res://resources/DefaultTheme.tres" id="5_2x6y7"]
+[ext_resource type="Texture2D" uid="uid://dy7rxp7elc5ny" path="res://resources/sand-32.png" id="6_5jgtx"]
 [ext_resource type="Script" path="res://scripts/EventManager.gd" id="6_7xm2o"]
 [ext_resource type="Script" path="res://scripts/BuildingManager.gd" id="6_abe2r"]
 [ext_resource type="PackedScene" path="res://scenes/GatheringParticles.tscn" id="7_htisa"]
@@ -112,25 +114,6 @@ script = ExtResource("2_81so0")
 [node name="ResourcesManager" type="Node2D" parent="."]
 script = ExtResource("4_o16af")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="ResourcesManager"]
-
-[node name="SandLabel" type="Label" parent="ResourcesManager/CanvasLayer"]
-offset_left = 34.0
-offset_top = 8.0
-offset_right = 123.0
-offset_bottom = 34.0
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 8
-text = "0
-"
-
-[node name="SandIcon" type="Sprite2D" parent="ResourcesManager/CanvasLayer/SandLabel"]
-position = Vector2(-24, 4)
-texture = ExtResource("1_n6nwv")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("3_5rtui")
 game_duration = 1000
@@ -164,3 +147,65 @@ texture = ExtResource("9_th5ef")
 z_index = 10
 position = Vector2(-56, -40)
 texture = ExtResource("9_th5ef")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SandLabel" type="Label" parent="CanvasLayer"]
+offset_left = 70.0
+offset_top = 12.0
+offset_right = 159.0
+offset_bottom = 60.0
+theme = ExtResource("5_2x6y7")
+text = "× 0
+"
+
+[node name="SandIcon" type="Sprite2D" parent="CanvasLayer/SandLabel"]
+position = Vector2(-43, 0)
+texture = ExtResource("6_5jgtx")
+centered = false
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="BuyDrillButton" type="Button" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 70.0
+offset_right = 170.0
+offset_bottom = 108.0
+focus_mode = 0
+theme = ExtResource("5_2x6y7")
+text = "100"
+
+[node name="DrillIcon" type="Sprite2D" parent="CanvasLayer/BuyDrillButton"]
+modulate = Color(1, 0.698039, 0.164706, 1)
+position = Vector2(7, -29)
+texture = ExtResource("9_th5ef")
+centered = false
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="SandIcon" type="Sprite2D" parent="CanvasLayer/BuyDrillButton"]
+position = Vector2(107, 12)
+texture = ExtResource("1_n6nwv")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="BuyFactoryButton" type="Button" parent="CanvasLayer"]
+offset_left = 20.0
+offset_top = 130.0
+offset_right = 170.0
+offset_bottom = 168.0
+focus_mode = 0
+theme = ExtResource("5_2x6y7")
+text = "100"
+
+[node name="FactoryIcon" type="Sprite2D" parent="CanvasLayer/BuyFactoryButton"]
+position = Vector2(7, -29)
+texture = ExtResource("9_th5ef")
+centered = false
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="SandIcon" type="Sprite2D" parent="CanvasLayer/BuyFactoryButton"]
+position = Vector2(107, 12)
+texture = ExtResource("1_n6nwv")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 0, 16, 16)
