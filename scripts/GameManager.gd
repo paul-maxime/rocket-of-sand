@@ -10,4 +10,4 @@ func _process(deltaTime):
 	if (time >= game_duration / (water.get_layers_count() - 1)):
 		time -= game_duration / (water.get_layers_count() - 1)
 		water.increase_water_level()
-	water.update_water_offset(time / (game_duration / (water.get_layers_count() - 1)))
+	water.update_water_offset(1 - time / (game_duration / (water.get_layers_count() - 1)))

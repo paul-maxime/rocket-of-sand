@@ -3,19 +3,18 @@ extends TileMap
 var water_level = -1
 var grid = Vector2i(50, 100)
 var offset_max = 8
-var current_offset = 0
+var water_material
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	update_water_offset(1)
+	water_material = tile_set.get_source(1).get_tile_data(Vector2i(1, 0), 0).material
+	update_water_offset(0)
 	increase_water_level()
 
 func update_water_offset(percent):
-	var new_offset = clamp(floor(percent * offset_max), 0, offset_max)
-	if (new_offset != current_offset):
-		current_offset = new_offset
-		var tile = tile_set.get_source(1).get_tile_data(Vector2i(1, 0), 0)
-		tile.set_texture_origin(Vector2i(0, current_offset - 3))
+	if (water_level < get_layers_count() - 1):
+		percent = clamp(percent, 0, 1)
+		water_material.set_shader_parameter('Offset', floor(percent * offset_max))
 
 func increase_water_level():
 	if (water_level + 1 >= get_layers_count()):

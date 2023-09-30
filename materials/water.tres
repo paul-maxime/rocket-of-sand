@@ -1,0 +1,61 @@
+[gd_resource type="VisualShader" load_steps=5 format=3 uid="uid://dhfq56v0cy420"]
+
+[sub_resource type="VisualShaderNodeIntParameter" id="VisualShaderNodeIntParameter_sfuvb"]
+parameter_name = "Offset"
+default_value_enabled = true
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_qauag"]
+input_name = "vertex"
+
+[sub_resource type="VisualShaderNodeVectorOp" id="VisualShaderNodeVectorOp_e3c4g"]
+default_input_values = [0, Vector2(0, 0), 1, Vector2(0, 0)]
+op_type = 0
+
+[sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_r8eva"]
+op_type = 0
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform int Offset = 0;
+
+
+
+void vertex() {
+// Input:3
+	vec2 n_out3p0 = VERTEX;
+
+
+// IntParameter:2
+	int n_out2p0 = Offset;
+
+
+// VectorCompose:5
+	float n_in5p0 = 0.00000;
+	vec2 n_out5p0 = vec2(n_in5p0, float(n_out2p0));
+
+
+// VectorOp:4
+	vec2 n_out4p0 = n_out3p0 + n_out5p0;
+
+
+// Output:0
+	VERTEX = n_out4p0;
+
+
+}
+"
+graph_offset = Vector2(-827.566, -122.227)
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(-220, 40)
+nodes/vertex/2/node = SubResource("VisualShaderNodeIntParameter_sfuvb")
+nodes/vertex/2/position = Vector2(-1040, 120)
+nodes/vertex/3/node = SubResource("VisualShaderNodeInput_qauag")
+nodes/vertex/3/position = Vector2(-880, -60)
+nodes/vertex/4/node = SubResource("VisualShaderNodeVectorOp_e3c4g")
+nodes/vertex/4/position = Vector2(-540, -20)
+nodes/vertex/5/node = SubResource("VisualShaderNodeVectorCompose_r8eva")
+nodes/vertex/5/position = Vector2(-760, 120)
+nodes/vertex/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 1, 5, 0, 4, 1, 4, 0, 0, 0)

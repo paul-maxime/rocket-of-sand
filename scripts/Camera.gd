@@ -1,6 +1,6 @@
 extends Camera2D
 
-var current_zoom = 1
+var current_zoom = 2
 var current_delta = Vector2()
 
 func _unhandled_input(event):
