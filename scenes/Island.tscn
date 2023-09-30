@@ -9,8 +9,8 @@
 [ext_resource type="Script" path="res://scripts/ResourcesManager.gd" id="4_o16af"]
 [ext_resource type="Script" path="res://scripts/EventManager.gd" id="6_7xm2o"]
 [ext_resource type="Script" path="res://scripts/BuildingManager.gd" id="6_abe2r"]
-[ext_resource type="Script" path="res://scripts/ClickManager.gd" id="6_nyqqn"]
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="7_htisa"]
+[ext_resource type="Script" path="res://scripts/GatheringManager.gd" id="8_haqap"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="9_th5ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47n1r"]
@@ -120,8 +120,8 @@ script = ExtResource("6_abe2r")
 [node name="EventManager" type="Node2D" parent="GameManager"]
 script = ExtResource("6_7xm2o")
 
-[node name="ClickManager" type="Node2D" parent="GameManager"]
-script = ExtResource("6_nyqqn")
+[node name="GatheringManager" type="Node2D" parent="GameManager"]
+script = ExtResource("8_haqap")
 click_particles = ExtResource("7_htisa")
 
 [node name="Camera2D" type="Camera2D" parent="."]
