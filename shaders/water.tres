@@ -73,7 +73,7 @@ function = 0
 operator = 2
 
 [sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_0ntag"]
-parameter_name = "Vawe"
+parameter_name = "Wave"
 default_value_enabled = true
 default_value = true
 
@@ -113,7 +113,7 @@ uniform bool Pixelate = false;
 uniform bool Random = true;
 uniform float Frequency = 50;
 uniform int Speed = 2;
-uniform bool Vawe = true;
+uniform bool Wave = true;
 uniform int Ampliture = 2;
 
 
@@ -200,7 +200,7 @@ void vertex() {
 
 
 // BooleanParameter:46
-	bool n_out46p0 = Vawe;
+	bool n_out46p0 = Wave;
 
 
 // FloatOp:34
@@ -270,7 +270,7 @@ void vertex() {
 
 }
 "
-graph_offset = Vector2(-1199.13, 51.5366)
+graph_offset = Vector2(-1875.17, 327.006)
 mode = 1
 flags/light_only = false
 nodes/vertex/0/position = Vector2(0, 200)

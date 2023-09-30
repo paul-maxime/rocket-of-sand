@@ -4,6 +4,7 @@ var water_level = -1
 var grid = Vector2i(50, 100)
 var offset_max = 8
 var water_material
+var update_offset = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,9 +13,11 @@ func _ready():
 	increase_water_level()
 
 func update_water_offset(percent):
-	if (water_level < get_layers_count() - 1):
+	if (update_offset):
 		percent = clamp(percent, 0, 1)
 		water_material.set_shader_parameter('Offset', floor(percent * offset_max))
+		if (water_level >= get_layers_count() - 1 && percent < 0.2):
+			update_offset = false
 
 func increase_water_level():
 	if (water_level + 1 >= get_layers_count()):

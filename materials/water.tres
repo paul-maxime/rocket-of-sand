@@ -9,5 +9,5 @@ shader_parameter/Pixelate = false
 shader_parameter/Random = true
 shader_parameter/Frequency = 30.0
 shader_parameter/Speed = 2
-shader_parameter/Vawe = true
+shader_parameter/Wave = true
 shader_parameter/Ampliture = 2
