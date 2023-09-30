@@ -1,11 +1,12 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ckhhgojge2pjb"]
 
-[ext_resource type="Shader" uid="uid://dhfq56v0cy420" path="res://shaders/water.tres" id="1_st7a1"]
+[ext_resource type="Shader" uid="uid://dhfq56v0cy420" path="res://shaders/water.tres" id="1_h4b1n"]
 
 [resource]
-shader = ExtResource("1_st7a1")
+shader = ExtResource("1_h4b1n")
 shader_parameter/Offset = 0
 shader_parameter/Pixelate = false
-shader_parameter/Frequency = 50.0
-shader_parameter/Speed = 5
+shader_parameter/Style = 2
+shader_parameter/Frequency = 30.0
+shader_parameter/Speed = 2
 shader_parameter/Ampliture = 2
