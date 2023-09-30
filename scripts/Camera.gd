@@ -1,16 +1,22 @@
 extends Camera2D
 
-const MAP_WIDTH = 400
-const MAP_HEIGHT = 200
+var current_zoom = 1
+var current_delta = Vector2()
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	get_tree().get_root().size_changed.connect(on_resize)
-	on_resize()
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		if !event.is_pressed():
+			return
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP && current_zoom < 10:
+			current_zoom += 1
+			resize()
+		if event.button_index == MOUSE_BUTTON_WHEEL_DOWN && current_zoom > 1:
+			current_zoom -= 1
+			resize()
+	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		current_delta += event.relative / current_zoom
+		position = -current_delta
 
-func on_resize():
-	var viewport_size = get_viewport_rect().size
-	var max_width_ratio = floor(viewport_size.x / MAP_WIDTH)
-	var max_height_ratio = floor(viewport_size.y / MAP_HEIGHT)
-	var ratio = max(max_width_ratio, max_height_ratio)
-	zoom = Vector2(ratio, ratio)
+
+func resize():
+	zoom = Vector2(current_zoom, current_zoom)
