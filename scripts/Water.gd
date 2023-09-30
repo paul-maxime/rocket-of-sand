@@ -7,7 +7,6 @@ var current_offset = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var current_offset = tile_set.get_source(1).get_tile_data(Vector2i(1, 0), 0).get_texture_origin().y
 	update_water_offset(1)
 	increase_water_level()
 
@@ -27,4 +26,6 @@ func increase_water_level():
 			var cell = get_cell_tile_data(water_level, Vector2i(x, y - 2 * water_level))
 			if (cell == null):
 				set_cell(water_level, Vector2i(x, y - 2 * water_level), 1, Vector2i(1, 0))
+			if y < grid.y / 2 - 1:
+				set_cell(water_level - 1, Vector2i(x, y - 2 * (water_level - 1)), -1)
 
