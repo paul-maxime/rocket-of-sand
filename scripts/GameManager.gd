@@ -3,7 +3,7 @@ extends Node2D
 @export var game_duration = 10
 
 var time = 0
-@onready var water = $"../TileMap"
+@onready var water = $"../Island"
 
 func _process(deltaTime):
 	time += deltaTime;

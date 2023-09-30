@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var tile_map = $'../../TileMap'
+@onready var tile_map = $'../../Island'
 signal block_clicked(block_type, layer, coordinate, screen_coordinate, wall_click)
 
 const CLICK_MAX_DISTANCE = 5

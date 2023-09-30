@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var tile_map = $'../../TileMap'
+@onready var tile_map = $'../../Island'
 
 func _ready():
 	$'../EventManager'.block_clicked.connect(place_building)
