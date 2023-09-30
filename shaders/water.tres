@@ -72,21 +72,24 @@ function = 0
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_6exvi"]
 operator = 2
 
-[sub_resource type="VisualShaderNodeIntParameter" id="VisualShaderNodeIntParameter_3fuhc"]
-parameter_name = "Style"
-hint = 1
-max = 2
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_0ntag"]
+parameter_name = "Vawe"
 default_value_enabled = true
+default_value = true
 
-[sub_resource type="VisualShaderNodeIf" id="VisualShaderNodeIf_o0gku"]
-default_input_values = [0, 0.0, 1, 1.0, 2, 1e-05, 3, Vector3(0, 0, 0), 4, Vector3(0, 0, 0), 5, Vector3(0, 0, 0)]
+[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_2pjvn"]
+parameter_name = "Random"
+default_value_enabled = true
+default_value = true
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_oj6lr"]
+default_input_values = [0, false, 1, 1.0, 2, 1.0]
+
+[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_11m1j"]
+default_input_values = [0, false, 1, 1.0, 2, 1.0]
 
 [sub_resource type="VisualShaderNodeVectorCompose" id="VisualShaderNodeVectorCompose_r8eva"]
 op_type = 0
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_ghrtp"]
-
-[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_24k5k"]
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_2s8p1"]
 function = 0
@@ -107,8 +110,10 @@ render_mode blend_mix;
 
 uniform int Offset = 0;
 uniform bool Pixelate = false;
+uniform bool Random = true;
 uniform float Frequency = 50;
 uniform int Speed = 2;
+uniform bool Vawe = true;
 uniform int Ampliture = 2;
 
 
@@ -133,6 +138,10 @@ void vertex() {
 
 // BooleanParameter:32
 	bool n_out32p0 = Pixelate;
+
+
+// BooleanParameter:47
+	bool n_out47p0 = Random;
 
 
 // Input:35
@@ -184,6 +193,16 @@ void vertex() {
 	float n_out42p0 = sin(n_out41p0);
 
 
+	float n_out48p0;
+// Switch:48
+	float n_in48p2 = 1.00000;
+	n_out48p0 = mix(n_in48p2, n_out42p0, float(n_out47p0));
+
+
+// BooleanParameter:46
+	bool n_out46p0 = Vawe;
+
+
 // FloatOp:34
 	float n_out34p0 = n_out17p0 / n_out36p0;
 
@@ -196,8 +215,14 @@ void vertex() {
 	float n_out6p0 = sin(n_out27p0);
 
 
+	float n_out49p0;
+// Switch:49
+	float n_in49p2 = 1.00000;
+	n_out49p0 = mix(n_in49p2, n_out6p0, float(n_out46p0));
+
+
 // FloatOp:43
-	float n_out43p0 = n_out42p0 * n_out6p0;
+	float n_out43p0 = n_out48p0 * n_out49p0;
 
 
 	float n_out9p0;
@@ -245,7 +270,7 @@ void vertex() {
 
 }
 "
-graph_offset = Vector2(-1381.39, 181.449)
+graph_offset = Vector2(-1199.13, 51.5366)
 mode = 1
 flags/light_only = false
 nodes/vertex/0/position = Vector2(0, 200)
@@ -302,13 +327,13 @@ nodes/vertex/41/position = Vector2(-2500, 540)
 nodes/vertex/42/node = SubResource("VisualShaderNodeFloatFunc_apnbi")
 nodes/vertex/42/position = Vector2(-2320, 580)
 nodes/vertex/43/node = SubResource("VisualShaderNodeFloatOp_6exvi")
-nodes/vertex/43/position = Vector2(-2020, 640)
-nodes/vertex/44/node = SubResource("VisualShaderNodeIntParameter_3fuhc")
-nodes/vertex/44/position = Vector2(-2080, 320)
-nodes/vertex/45/node = SubResource("VisualShaderNodeIf_o0gku")
-nodes/vertex/45/position = Vector2(-1640, 540)
-nodes/vertex/50/node = SubResource("VisualShaderNodeFloatOp_ghrtp")
-nodes/vertex/50/position = Vector2(-1720, 920)
-nodes/vertex/51/node = SubResource("VisualShaderNodeFloatOp_24k5k")
-nodes/vertex/51/position = Vector2(-1560, 980)
-nodes/vertex/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 1, 5, 0, 4, 1, 4, 0, 8, 0, 10, 0, 8, 1, 9, 0, 12, 0, 11, 0, 12, 1, 12, 0, 13, 0, 8, 0, 0, 0, 7, 0, 28, 0, 14, 0, 28, 1, 28, 0, 27, 1, 12, 0, 33, 2, 13, 0, 33, 1, 33, 0, 10, 1, 32, 0, 33, 0, 27, 0, 6, 0, 25, 3, 17, 0, 34, 0, 27, 0, 35, 0, 25, 0, 36, 0, 34, 1, 17, 0, 37, 0, 17, 1, 37, 1, 37, 0, 40, 0, 36, 0, 40, 1, 17, 0, 34, 0, 28, 0, 41, 1, 40, 0, 41, 0, 41, 0, 42, 0, 42, 0, 43, 0, 6, 0, 43, 1, 44, 0, 45, 0, 43, 0, 45, 4, 42, 0, 45, 3, 6, 0, 45, 5, 50, 0, 51, 0, 43, 0, 9, 0)
+nodes/vertex/43/position = Vector2(-1760, 580)
+nodes/vertex/46/node = SubResource("VisualShaderNodeBooleanParameter_0ntag")
+nodes/vertex/46/position = Vector2(-2500, 920)
+nodes/vertex/47/node = SubResource("VisualShaderNodeBooleanParameter_2pjvn")
+nodes/vertex/47/position = Vector2(-2420, 340)
+nodes/vertex/48/node = SubResource("VisualShaderNodeSwitch_oj6lr")
+nodes/vertex/48/position = Vector2(-2060, 380)
+nodes/vertex/49/node = SubResource("VisualShaderNodeSwitch_11m1j")
+nodes/vertex/49/position = Vector2(-2100, 860)
+nodes/vertex/connections = PackedInt32Array(3, 0, 4, 0, 2, 0, 5, 1, 5, 0, 4, 1, 4, 0, 8, 0, 10, 0, 8, 1, 9, 0, 12, 0, 11, 0, 12, 1, 12, 0, 13, 0, 8, 0, 0, 0, 7, 0, 28, 0, 14, 0, 28, 1, 28, 0, 27, 1, 12, 0, 33, 2, 13, 0, 33, 1, 33, 0, 10, 1, 32, 0, 33, 0, 27, 0, 6, 0, 25, 3, 17, 0, 34, 0, 27, 0, 35, 0, 25, 0, 36, 0, 34, 1, 17, 0, 37, 0, 17, 1, 37, 1, 37, 0, 40, 0, 36, 0, 40, 1, 17, 0, 34, 0, 28, 0, 41, 1, 40, 0, 41, 0, 41, 0, 42, 0, 43, 0, 9, 0, 47, 0, 48, 0, 42, 0, 48, 1, 48, 0, 43, 0, 46, 0, 49, 0, 6, 0, 49, 1, 49, 0, 43, 1)

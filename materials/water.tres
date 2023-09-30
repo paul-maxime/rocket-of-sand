@@ -6,7 +6,8 @@
 shader = ExtResource("1_h4b1n")
 shader_parameter/Offset = 0
 shader_parameter/Pixelate = false
-shader_parameter/Style = 1
+shader_parameter/Random = true
 shader_parameter/Frequency = 30.0
 shader_parameter/Speed = 2
+shader_parameter/Vawe = true
 shader_parameter/Ampliture = 2
