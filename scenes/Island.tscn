@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dkgkeifm26gm7"]
+[gd_scene load_steps=8 format=3 uid="uid://dkgkeifm26gm7"]
 
 [ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="1_n6nwv"]
 [ext_resource type="Script" path="res://scripts/Water.gd" id="2_81so0"]
