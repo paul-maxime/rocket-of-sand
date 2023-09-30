@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dkgkeifm26gm7"]
+[gd_scene load_steps=12 format=3 uid="uid://dkgkeifm26gm7"]
 
 [ext_resource type="Material" uid="uid://ckhhgojge2pjb" path="res://materials/water.tres" id="1_14h4f"]
 [ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="1_n6nwv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://co1dhywe57swo" path="res://resources/rocket.png" id="4_2y4em"]
 [ext_resource type="Script" path="res://scripts/EventManager.gd" id="6_7xm2o"]
 [ext_resource type="Script" path="res://scripts/BuildingManager.gd" id="6_abe2r"]
+[ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="9_th5ef"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47n1r"]
 texture = ExtResource("1_n6nwv")
@@ -103,3 +104,13 @@ script = ExtResource("3_3o8jx")
 z_index = 10
 position = Vector2(16, -141)
 texture = ExtResource("4_2y4em")
+
+[node name="Factory" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-16, 36)
+texture = ExtResource("9_th5ef")
+
+[node name="Factory2" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-72, -24)
+texture = ExtResource("9_th5ef")
