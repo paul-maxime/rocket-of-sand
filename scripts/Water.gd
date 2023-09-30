@@ -1,7 +1,7 @@
 extends TileMap
 
 var water_level = -1
-var grid = Vector2i(100, 100)
+var grid = Vector2i(50, 100)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
