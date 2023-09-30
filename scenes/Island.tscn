@@ -85,7 +85,6 @@ script = ExtResource("3_3o8jx")
 
 [node name="GameManager" type="Node" parent="."]
 script = ExtResource("3_5rtui")
-game_duration = 10000
 
 [node name="Rocket" type="Sprite2D" parent="."]
 z_index = 10
