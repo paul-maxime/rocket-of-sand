@@ -1,25 +1,18 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=10 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
-[ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="2_eugxd"]
-[ext_resource type="Script" path="res://scripts/ResourcesManager.gd" id="4_7cr7x"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="5_sc47u"]
 [ext_resource type="Script" path="res://scripts/BuildingManager.gd" id="6_x8doe"]
 [ext_resource type="Script" path="res://scripts/EventManager.gd" id="7_66p1s"]
 [ext_resource type="Script" path="res://scripts/GatheringManager.gd" id="8_xk1pp"]
+[ext_resource type="PackedScene" uid="uid://cmbonu0v146nc" path="res://scenes/InterfaceLayer.tscn" id="9_vyb6q"]
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
 [ext_resource type="Texture2D" uid="uid://co1dhywe57swo" path="res://resources/rocket.png" id="11_nuyi2"]
-[ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="12_d8khd"]
-[ext_resource type="Theme" uid="uid://dkipchea646ox" path="res://resources/DefaultTheme.tres" id="13_8jguk"]
-[ext_resource type="Texture2D" uid="uid://dy7rxp7elc5ny" path="res://resources/sand-32.png" id="14_6h07t"]
 
 [node name="MainScene" type="Node2D"]
 
 [node name="Island" parent="." instance=ExtResource("1_1buq4")]
-
-[node name="ResourcesManager" type="Node2D" parent="."]
-script = ExtResource("4_7cr7x")
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("5_sc47u")
@@ -45,74 +38,4 @@ z_index = 10
 position = Vector2(-64, -224)
 texture = ExtResource("11_nuyi2")
 
-[node name="Factory" type="Sprite2D" parent="."]
-z_index = 10
-position = Vector2(-16, 36)
-texture = ExtResource("12_d8khd")
-
-[node name="Factory2" type="Sprite2D" parent="."]
-z_index = 10
-position = Vector2(-56, -40)
-texture = ExtResource("12_d8khd")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="SandLabel" type="Label" parent="CanvasLayer"]
-offset_left = 70.0
-offset_top = 12.0
-offset_right = 159.0
-offset_bottom = 60.0
-theme = ExtResource("13_8jguk")
-text = "× 0
-"
-
-[node name="SandIcon" type="Sprite2D" parent="CanvasLayer/SandLabel"]
-position = Vector2(-43, 0)
-texture = ExtResource("14_6h07t")
-centered = false
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="BuyDrillButton" type="Button" parent="CanvasLayer"]
-offset_left = 20.0
-offset_top = 70.0
-offset_right = 170.0
-offset_bottom = 108.0
-focus_mode = 0
-theme = ExtResource("13_8jguk")
-text = "100"
-
-[node name="DrillIcon" type="Sprite2D" parent="CanvasLayer/BuyDrillButton"]
-modulate = Color(1, 0.698039, 0.164706, 1)
-position = Vector2(7, -29)
-texture = ExtResource("12_d8khd")
-centered = false
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="SandIcon" type="Sprite2D" parent="CanvasLayer/BuyDrillButton"]
-position = Vector2(107, 12)
-texture = ExtResource("2_eugxd")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="BuyFactoryButton" type="Button" parent="CanvasLayer"]
-offset_left = 20.0
-offset_top = 130.0
-offset_right = 170.0
-offset_bottom = 168.0
-focus_mode = 0
-theme = ExtResource("13_8jguk")
-text = "100"
-
-[node name="FactoryIcon" type="Sprite2D" parent="CanvasLayer/BuyFactoryButton"]
-position = Vector2(7, -29)
-texture = ExtResource("12_d8khd")
-centered = false
-region_rect = Rect2(0, 0, 16, 16)
-
-[node name="SandIcon" type="Sprite2D" parent="CanvasLayer/BuyFactoryButton"]
-position = Vector2(107, 12)
-texture = ExtResource("2_eugxd")
-centered = false
-region_enabled = true
-region_rect = Rect2(0, 0, 16, 16)
+[node name="CanvasLayer" parent="." instance=ExtResource("9_vyb6q")]
