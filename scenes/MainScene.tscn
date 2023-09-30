@@ -1,39 +1,39 @@
 [gd_scene load_steps=17 format=3 uid="uid://dkgkeifm26gm7"]
 
-[ext_resource type="Material" uid="uid://ckhhgojge2pjb" path="res://materials/water.tres" id="1_14h4f"]
-[ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="1_n6nwv"]
-[ext_resource type="Script" path="res://scripts/Water.gd" id="2_81so0"]
-[ext_resource type="Script" path="res://scripts/Camera.gd" id="3_3o8jx"]
-[ext_resource type="Script" path="res://scripts/GameManager.gd" id="3_5rtui"]
-[ext_resource type="Texture2D" uid="uid://co1dhywe57swo" path="res://resources/rocket.png" id="4_2y4em"]
-[ext_resource type="Script" path="res://scripts/ResourcesManager.gd" id="4_o16af"]
-[ext_resource type="Theme" path="res://resources/DefaultTheme.tres" id="5_2x6y7"]
-[ext_resource type="Texture2D" uid="uid://ba5nsiybsi8yr" path="res://resources/sand-32.png" id="6_5jgtx"]
-[ext_resource type="Script" path="res://scripts/EventManager.gd" id="6_7xm2o"]
-[ext_resource type="Script" path="res://scripts/BuildingManager.gd" id="6_abe2r"]
-[ext_resource type="PackedScene" path="res://scenes/GatheringParticles.tscn" id="7_htisa"]
-[ext_resource type="Script" path="res://scripts/GatheringManager.gd" id="8_haqap"]
-[ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="9_th5ef"]
+[ext_resource type="Material" uid="uid://ckhhgojge2pjb" path="res://materials/water.tres" id="1_nwus2"]
+[ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="2_eugxd"]
+[ext_resource type="Script" path="res://scripts/Water.gd" id="3_n08if"]
+[ext_resource type="Script" path="res://scripts/ResourcesManager.gd" id="4_7cr7x"]
+[ext_resource type="Script" path="res://scripts/GameManager.gd" id="5_sc47u"]
+[ext_resource type="Script" path="res://scripts/BuildingManager.gd" id="6_x8doe"]
+[ext_resource type="Script" path="res://scripts/EventManager.gd" id="7_66p1s"]
+[ext_resource type="Script" path="res://scripts/GatheringManager.gd" id="8_xk1pp"]
+[ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
+[ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
+[ext_resource type="Texture2D" uid="uid://co1dhywe57swo" path="res://resources/rocket.png" id="11_nuyi2"]
+[ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="12_d8khd"]
+[ext_resource type="Theme" uid="uid://dkipchea646ox" path="res://resources/DefaultTheme.tres" id="13_8jguk"]
+[ext_resource type="Texture2D" uid="uid://dy7rxp7elc5ny" path="res://resources/sand-32.png" id="14_6h07t"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47n1r"]
-texture = ExtResource("1_n6nwv")
+texture = ExtResource("2_eugxd")
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 4)
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
 1:0/0 = 0
 1:0/0/texture_origin = Vector2i(0, 4)
-1:0/0/material = ExtResource("1_14h4f")
+1:0/0/material = ExtResource("1_nwus2")
 1:0/0/terrain_set = 0
 1:0/0/terrain = 1
 2:0/0 = 0
 2:0/0/texture_origin = Vector2i(0, 4)
-2:0/0/material = ExtResource("1_14h4f")
+2:0/0/material = ExtResource("1_nwus2")
 2:0/0/terrain_set = 0
 2:0/0/terrain = 1
 3:0/0 = 0
 3:0/0/texture_origin = Vector2i(0, 4)
-3:0/0/material = ExtResource("1_14h4f")
+3:0/0/material = ExtResource("1_nwus2")
 3:0/0/terrain_set = 0
 3:0/0/terrain = 1
 0:1/0 = 0
@@ -51,7 +51,7 @@ terrain_set_0/terrain_1/name = "Water"
 terrain_set_0/terrain_1/color = Color(0.2, 0.427451, 0.792157, 1)
 sources/1 = SubResource("TileSetAtlasSource_47n1r")
 
-[node name="Node2D" type="Node2D"]
+[node name="MainScene" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -109,44 +109,44 @@ layer_7/y_sort_enabled = true
 layer_7/y_sort_origin = 0
 layer_7/z_index = 100
 layer_7/tile_data = PackedInt32Array()
-script = ExtResource("2_81so0")
+script = ExtResource("3_n08if")
 
 [node name="ResourcesManager" type="Node2D" parent="."]
-script = ExtResource("4_o16af")
+script = ExtResource("4_7cr7x")
 
 [node name="GameManager" type="Node2D" parent="."]
-script = ExtResource("3_5rtui")
+script = ExtResource("5_sc47u")
 game_duration = 1000
 
 [node name="BuildingManager" type="Node2D" parent="GameManager"]
-script = ExtResource("6_abe2r")
+script = ExtResource("6_x8doe")
 
 [node name="EventManager" type="Node2D" parent="GameManager"]
-script = ExtResource("6_7xm2o")
+script = ExtResource("7_66p1s")
 
 [node name="GatheringManager" type="Node2D" parent="GameManager"]
-script = ExtResource("8_haqap")
-click_particles = ExtResource("7_htisa")
+script = ExtResource("8_xk1pp")
+click_particles = ExtResource("9_xv6p5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(-10, -10)
 zoom = Vector2(2, 2)
-script = ExtResource("3_3o8jx")
+script = ExtResource("10_obdi1")
 
 [node name="Rocket" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(-64, -224)
-texture = ExtResource("4_2y4em")
+texture = ExtResource("11_nuyi2")
 
 [node name="Factory" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(-16, 36)
-texture = ExtResource("9_th5ef")
+texture = ExtResource("12_d8khd")
 
 [node name="Factory2" type="Sprite2D" parent="."]
 z_index = 10
 position = Vector2(-56, -40)
-texture = ExtResource("9_th5ef")
+texture = ExtResource("12_d8khd")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -155,13 +155,13 @@ offset_left = 70.0
 offset_top = 12.0
 offset_right = 159.0
 offset_bottom = 60.0
-theme = ExtResource("5_2x6y7")
+theme = ExtResource("13_8jguk")
 text = "× 0
 "
 
 [node name="SandIcon" type="Sprite2D" parent="CanvasLayer/SandLabel"]
 position = Vector2(-43, 0)
-texture = ExtResource("6_5jgtx")
+texture = ExtResource("14_6h07t")
 centered = false
 region_rect = Rect2(0, 0, 16, 16)
 
@@ -171,19 +171,19 @@ offset_top = 70.0
 offset_right = 170.0
 offset_bottom = 108.0
 focus_mode = 0
-theme = ExtResource("5_2x6y7")
+theme = ExtResource("13_8jguk")
 text = "100"
 
 [node name="DrillIcon" type="Sprite2D" parent="CanvasLayer/BuyDrillButton"]
 modulate = Color(1, 0.698039, 0.164706, 1)
 position = Vector2(7, -29)
-texture = ExtResource("9_th5ef")
+texture = ExtResource("12_d8khd")
 centered = false
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="SandIcon" type="Sprite2D" parent="CanvasLayer/BuyDrillButton"]
 position = Vector2(107, 12)
-texture = ExtResource("1_n6nwv")
+texture = ExtResource("2_eugxd")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
@@ -194,18 +194,18 @@ offset_top = 130.0
 offset_right = 170.0
 offset_bottom = 168.0
 focus_mode = 0
-theme = ExtResource("5_2x6y7")
+theme = ExtResource("13_8jguk")
 text = "100"
 
 [node name="FactoryIcon" type="Sprite2D" parent="CanvasLayer/BuyFactoryButton"]
 position = Vector2(7, -29)
-texture = ExtResource("9_th5ef")
+texture = ExtResource("12_d8khd")
 centered = false
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="SandIcon" type="Sprite2D" parent="CanvasLayer/BuyFactoryButton"]
 position = Vector2(107, 12)
-texture = ExtResource("1_n6nwv")
+texture = ExtResource("2_eugxd")
 centered = false
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
