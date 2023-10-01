@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://83yyfufbq317"]
+[gd_scene load_steps=4 format=3 uid="uid://83yyfufbq317"]
 
 [ext_resource type="Script" path="res://scripts/Building.gd" id="1_t37nm"]
+[ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="2_av3cq"]
+[ext_resource type="Material" uid="uid://cibcewx1u1kvy" path="res://materials/BuildPreview.tres" id="2_ldx1c"]
 
 [node name="Building" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_t37nm")
+
+[node name="BuildPreview" type="Sprite2D" parent="."]
+visible = false
+z_index = 1000
+material = ExtResource("2_ldx1c")
+position = Vector2(8, -24)
+texture = ExtResource("2_av3cq")
