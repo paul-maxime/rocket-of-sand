@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/Building.gd" id="1_t37nm"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="2_av3cq"]
-[ext_resource type="Material" uid="uid://cibcewx1u1kvy" path="res://materials/BuildPreview.tres" id="2_ldx1c"]
+[ext_resource type="Material" path="res://materials/BuildPreview.tres" id="2_ldx1c"]
 
 [node name="Building" type="Node2D"]
 y_sort_enabled = true

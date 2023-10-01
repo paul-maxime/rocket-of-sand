@@ -35,3 +35,17 @@ func increase_water_level():
 			if water_level > 0 && y < grid.y / 2 - 1 && x > -grid.x / 2:
 				set_cell(water_level - 1, Vector2i(x, y - 2 * (water_level - 1)), -1)
 
+
+var mining_progress = {}
+
+func erase_sand(layer, coordinates):
+	var index = str(layer) + "," + str(coordinates.x) + "," + str(coordinates.y)
+	mining_progress[index] = mining_progress.get(index) + 1 if mining_progress.has(index) else 1
+	if mining_progress[index] < 8:
+		var mining_progress_index = mining_progress[index] / 2
+		set_cell(layer, coordinates, 1, Vector2i(mining_progress_index, 4))
+		return
+	if layer == water_level:
+		set_cell(layer, coordinates, 1, Vector2i(1, 0))
+	else:
+		set_cell(layer, coordinates, -1)
