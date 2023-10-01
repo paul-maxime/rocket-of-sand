@@ -20,13 +20,17 @@ func update_sand(value: int):
 
 func update_rocket_price(price, new_sprite):
 	rocket_price = price
-	buy_rocket_button.text = str(rocket_price)
-	buy_rocket_button.get_child(0).texture = new_sprite
+	update_button_price(buy_rocket_button, rocket_price)
+	buy_rocket_button.get_node("RocketIcon").texture = new_sprite
 
 func update_drill_price(price):
 	drill_price = price
-	buy_drill_button.text = str(drill_price)
+	update_button_price(buy_drill_button, drill_price)
 
 func update_factory_price(price):
 	factory_price = price
-	buy_factory_button.text = str(factory_price)
+	update_button_price(buy_factory_button, factory_price)
+
+func update_button_price(button, price):
+	button.text = str(price)
+	button.get_node("SandIcon").position.x = 130 + (len(str(price)) - 3) * 8
