@@ -41,15 +41,34 @@ func check_free_space(layer, coordinate):
 func get_valid_coordinates(block_type, layer, coordinate, wall_click):
 	if (wall_click || block_type != 0):
 		return []
+	var has_water = false
 	for ground_coord in [coordinate, coordinate + Vector2i(1, 0), coordinate + Vector2i(abs(coordinate.y % 2), 1), coordinate + Vector2i(abs(coordinate.y % 2), -1)]:
 		var ground_cell = tile_map.get_cell_tile_data(layer, ground_coord)
 		if (ground_cell == null || ground_cell.terrain != 0):
 			return []
+		if !has_water and is_next_to_water(layer, ground_coord):
+			has_water = true
+	if !has_water and building_type == "FACTORY":
+		return []
 	var building_coordinates = [coordinate + Vector2i(0, -2), coordinate + Vector2i(1, -2), coordinate + Vector2i(abs(coordinate.y % 2), -1), coordinate + Vector2i(abs(coordinate.y % 2), -3)]
 	for b_coord in building_coordinates:
 		if (!check_free_space(layer + 1, b_coord)):
 			return []
 	return building_coordinates
+
+func is_next_to_water(layer, coordinates):
+	var offset = coordinates.y & 1
+
+	var cell = tile_map.get_cell_tile_data(layer, coordinates + Vector2i(offset, 1))
+	if cell and cell.terrain == 1: return true
+	cell = tile_map.get_cell_tile_data(layer, coordinates + Vector2i(-1 + offset, 1))
+	if cell and cell.terrain == 1: return true
+	cell = tile_map.get_cell_tile_data(layer, coordinates + Vector2i(offset, -1))
+	if cell and cell.terrain == 1: return true
+	cell = tile_map.get_cell_tile_data(layer, coordinates + Vector2i(-1 + offset, -1))
+	if cell and cell.terrain == 1: return true
+
+	return false
 
 func place_building(block_type, layer, coordinate, _screen_coordinate, wall_click):
 	if (!build_mode || !check_price()):
