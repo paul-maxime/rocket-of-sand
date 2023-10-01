@@ -66,9 +66,34 @@ func place_building(block_type, layer, coordinate, screen_coordinate, wall_click
 	new_building.position = tile_map.map_to_local(building_coordinates[0])
 	new_building.type = building_type
 	add_child(new_building)
-	tile_map.set_cell(layer + 1, building_coordinates[0], 1, Vector2i(4, 3))
-	# Spawn top part. Don't ask questions.
-	tile_map.set_cell(tile_map.get_layers_count() - 1, building_coordinates[1], 1, Vector2i(4, 0))
+	
+	var x_offset = 0
+	if abs(building_coordinates[0].y % 2) == 1 :
+		x_offset = 1
+
+	
+	tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x, building_coordinates[0].y), 1, Vector2i(0, 3))
+	tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1), 1, Vector2i(1, 2))
+	tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y), 1, Vector2i(1, 3))
+
+	tile_map.set_cell(layer + 2, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 2), 1, Vector2i(4, 7))
+	tile_map.set_cell(layer + 2, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 2), 1, Vector2i(5, 6))
+	tile_map.set_cell(layer + 2, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 2), 1, Vector2i(5, 7))
+
+	tile_map.set_cell(layer + 3, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 4), 1, Vector2i(4, 5))
+	tile_map.set_cell(layer + 3, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 4), 1, Vector2i(5, 4))
+	tile_map.set_cell(layer + 3, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 4), 1, Vector2i(5, 5))
+
+	tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 6), 1, Vector2i(4, 3))
+	tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 6), 1, Vector2i(5, 2))
+	tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 6), 1, Vector2i(5, 3))
+
+	tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 8), 1, Vector2i(4, 1))
+	tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 8), 1, Vector2i(5, 0))
+	tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 8), 1, Vector2i(5, 1))
+
+	tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), 1, Vector2i(4, 0))
+
 	preview.get_child(0).material.set_shader_parameter('IsValid', false)
 	update_price()
 
