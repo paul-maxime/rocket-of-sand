@@ -5,6 +5,8 @@ extends Node2D
 
 var current_sand = 0
 var gathering_power = 1
+var factory_power = 0
+var factory_bonus = 1000
 
 func _ready():
 	$'../EventManager'.block_clicked.connect(on_block_clicked)
@@ -12,13 +14,14 @@ func _ready():
 
 func on_block_clicked(block_type, _layer, _coordinate, screen_coordinate, wall_click):
 	if block_type == 0 && !wall_click && !building_manager.build_mode:
+		var sand_amount = gathering_power + factory_power * 1000
 		var particles: CPUParticles2D = click_particles.instantiate()
 		particles.position = screen_coordinate
 		particles.emitting = true
-		particles.amount = gathering_power
+		particles.amount = sand_amount
 		add_child(particles)
 		get_tree().create_timer(particles.lifetime).timeout.connect(particles.queue_free)
-		add_sand(gathering_power)
+		add_sand(sand_amount)
 		gathering_power += 1
 
 func add_sand(amount):
