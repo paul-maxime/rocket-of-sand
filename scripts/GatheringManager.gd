@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var click_particles: PackedScene
+@onready var building_manager = $'../BuildingManager'
 
 var current_sand = 0
 var gathering_power = 1
@@ -10,7 +11,7 @@ func _ready():
 	$'../EventManager'.block_hovered.connect(on_block_hovered)
 
 func on_block_clicked(block_type, _layer, _coordinate, screen_coordinate, wall_click):
-	if block_type == 0 && !wall_click:
+	if block_type == 0 && !wall_click && !building_manager.build_mode:
 		var particles: CPUParticles2D = click_particles.instantiate()
 		particles.position = screen_coordinate
 		particles.emitting = true
