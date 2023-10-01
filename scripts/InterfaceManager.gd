@@ -18,7 +18,8 @@ func update_sand(value: int):
 	buy_factory_button.disabled = value < factory_price
 	buy_rocket_button.disabled = value < rocket_price
 
-func update_rocket_price(price, current_sand):
+func update_rocket_price(price, current_sand, new_sprite):
 	rocket_price = price
 	buy_rocket_button.text = str(rocket_price)
 	buy_rocket_button.disabled = current_sand < rocket_price
+	buy_rocket_button.get_child(0).texture = new_sprite
