@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=11 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
+[ext_resource type="PackedScene" uid="uid://83yyfufbq317" path="res://scenes/Building.tscn" id="4_7bn8d"]
 [ext_resource type="Script" path="res://scripts/GameManager.gd" id="5_sc47u"]
 [ext_resource type="Script" path="res://scripts/BuildingManager.gd" id="6_x8doe"]
 [ext_resource type="Script" path="res://scripts/EventManager.gd" id="7_66p1s"]
@@ -20,6 +21,7 @@ game_duration = 1000
 
 [node name="BuildingManager" type="Node2D" parent="GameManager"]
 script = ExtResource("6_x8doe")
+building_prefab = ExtResource("4_7bn8d")
 
 [node name="EventManager" type="Node2D" parent="GameManager"]
 script = ExtResource("7_66p1s")

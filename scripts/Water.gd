@@ -1,4 +1,5 @@
 extends TileMap
+class_name Water
 
 var water_level = -1
 var grid = Vector2i(50, 100)
