@@ -66,12 +66,11 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 	new_building.position = tile_map.map_to_local(building_coordinates[0])
 	new_building.type = building_type
 	add_child(new_building)
-	
+
 	var x_offset = 0
 	if abs(building_coordinates[0].y % 2) == 1 :
 		x_offset = 1
 
-	
 	tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x, building_coordinates[0].y), 1, Vector2i(0, 3))
 	tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1), 1, Vector2i(1, 2))
 	tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y), 1, Vector2i(1, 3))
@@ -146,7 +145,33 @@ func preview_factory():
 
 func destroy_buildings(water_level):
 	for b in get_children():
-		if (b.layer == water_level && b.coordinates != []):
-			tile_map.set_cell(water_level, b.coordinates[0], -1)
-			tile_map.set_cell(tile_map.get_layers_count() - 1, b.coordinates[1], -1)
+		if b.layer == water_level && b.coordinates != []:
+			var layer = b.layer - 1
+			var building_coordinates = b.coordinates
+			var x_offset = 0
+			if abs(building_coordinates[0].y % 2) == 1 :
+				x_offset = 1
+
+			tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x, building_coordinates[0].y), -1)
+			tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1), -1)
+			tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y), -1)
+
+			tile_map.set_cell(layer + 2, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 2), -1)
+			tile_map.set_cell(layer + 2, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 2), -1)
+			tile_map.set_cell(layer + 2, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 2), -1)
+
+			tile_map.set_cell(layer + 3, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 4), -1)
+			tile_map.set_cell(layer + 3, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 4), -1)
+			tile_map.set_cell(layer + 3, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 4), -1)
+
+			tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 6), -1)
+			tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 6), -1)
+			tile_map.set_cell(layer + 4, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 6), -1)
+
+			tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 8), -1)
+			tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 8), -1)
+			tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 8), -1)
+
+			tile_map.set_cell(layer + 6, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), -1)
+
 			remove_child(b)
