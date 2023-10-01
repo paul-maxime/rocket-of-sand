@@ -4,6 +4,8 @@ extends Node2D
 @export var building_prefab: PackedScene
 
 var preview
+var build_mode = false
+var building_type = ''
 
 func _ready():
 	var event_manager = $'../EventManager'
@@ -12,9 +14,12 @@ func _ready():
 	preview.coordinates = []
 	preview.layer = 0
 	preview.island = tile_map
+	preview.visible = false
 	preview.get_child(0).visible = true
 	add_child(preview)
 	event_manager.block_hovered.connect(move_preview)
+	$'/root/MainScene/CanvasLayer/Panel/BuyDrillButton'.pressed.connect(preview_drill)
+	$'/root/MainScene/CanvasLayer/Panel/BuyFactoryButton'.pressed.connect(preview_factory)
 
 func check_free_space(layer, coordinate):
 	var cell = tile_map.get_cell_tile_data(layer, coordinate)
@@ -41,6 +46,8 @@ func get_valid_coordinates(block_type, layer, coordinate, wall_click):
 	return building_coordinates
 
 func place_building(block_type, layer, coordinate, screen_coordinate, wall_click):
+	if (!build_mode):
+		return
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, wall_click)
 	if (building_coordinates == []):
 		return
@@ -54,6 +61,7 @@ func place_building(block_type, layer, coordinate, screen_coordinate, wall_click
 	tile_map.set_cell(layer + 1, building_coordinates[0], 1, Vector2i(4, 3))
 	# Spawn top part. Don't ask questions.
 	tile_map.set_cell(tile_map.get_layers_count() - 1, building_coordinates[1], 1, Vector2i(4, 0))
+	preview.get_child(0).material.set_shader_parameter('IsValid', false)
 
 func move_preview(block_type, layer, coordinate, screen_coordinate, on_wall):
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, on_wall)
@@ -63,3 +71,20 @@ func move_preview(block_type, layer, coordinate, screen_coordinate, on_wall):
 	else:
 		preview.get_child(0).material.set_shader_parameter('IsValid', false)
 		preview.position = (get_global_mouse_position() if on_wall else tile_map.map_to_local(coordinate + Vector2i(0, -2)))
+
+func set_build_mode(type):
+	var new_build_mode = building_type != type || !build_mode
+	building_type = type
+	build_mode = new_build_mode
+	preview.visible = new_build_mode
+
+func _input(event):
+	if build_mode && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_RIGHT:
+		build_mode = false
+		preview.visible = false
+
+func preview_drill():
+	set_build_mode('DRILL')
+
+func preview_factory():
+	set_build_mode('FACTORY')
