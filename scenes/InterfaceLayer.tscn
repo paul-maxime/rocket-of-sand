@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://cmbonu0v146nc"]
+[gd_scene load_steps=15 format=3 uid="uid://cmbonu0v146nc"]
 
 [ext_resource type="Script" path="res://scripts/InterfaceManager.gd" id="1_1u74w"]
 [ext_resource type="Theme" uid="uid://dkipchea646ox" path="res://resources/DefaultTheme.tres" id="2_iwdsn"]
 [ext_resource type="Texture2D" uid="uid://dy7rxp7elc5ny" path="res://resources/sand-32.png" id="3_br2wc"]
 [ext_resource type="Texture2D" uid="uid://d3msbduvoopn6" path="res://resources/drill1.png" id="4_4w24i"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="4_6yk4b"]
+[ext_resource type="Texture2D" uid="uid://dpeu2ok1ro2fl" path="res://resources/bolt.png" id="4_hduqv"]
 [ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="5_yh5tu"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="6_ypxny"]
 
@@ -75,9 +76,9 @@ layout_mode = 2
 theme = ExtResource("2_iwdsn")
 text = "0"
 
-[node name="SandIcon" type="Sprite2D" parent="Panel/PowerLabelContainer/PowerLabel"]
-position = Vector2(-43, 0)
-texture = ExtResource("3_br2wc")
+[node name="PowerIcon" type="Sprite2D" parent="Panel/PowerLabelContainer/PowerLabel"]
+position = Vector2(-40, 0)
+texture = ExtResource("4_hduqv")
 centered = false
 region_rect = Rect2(0, 0, 16, 16)
 
