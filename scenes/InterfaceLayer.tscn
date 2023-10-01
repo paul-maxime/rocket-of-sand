@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cmbonu0v146nc"]
+[gd_scene load_steps=13 format=3 uid="uid://cmbonu0v146nc"]
 
 [ext_resource type="Script" path="res://scripts/InterfaceManager.gd" id="1_1u74w"]
 [ext_resource type="Theme" uid="uid://dkipchea646ox" path="res://resources/DefaultTheme.tres" id="2_iwdsn"]
@@ -6,6 +6,30 @@
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="4_6yk4b"]
 [ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="5_yh5tu"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="6_ypxny"]
+
+[sub_resource type="InputEventKey" id="InputEventKey_ge17h"]
+device = -1
+physical_keycode = 49
+unicode = 49
+
+[sub_resource type="Shortcut" id="Shortcut_abmxe"]
+events = [SubResource("InputEventKey_ge17h")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_p2jsc"]
+device = -1
+physical_keycode = 50
+unicode = 50
+
+[sub_resource type="Shortcut" id="Shortcut_y21ef"]
+events = [SubResource("InputEventKey_p2jsc")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_d4im3"]
+device = -1
+physical_keycode = 51
+unicode = 51
+
+[sub_resource type="Shortcut" id="Shortcut_44b6p"]
+events = [SubResource("InputEventKey_d4im3")]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_1u74w")
@@ -42,6 +66,7 @@ offset_right = 210.0
 offset_bottom = 100.0
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
+shortcut = SubResource("Shortcut_abmxe")
 text = "100"
 
 [node name="DrillIcon" type="Sprite2D" parent="Panel/BuyDrillButton"]
@@ -66,6 +91,7 @@ offset_right = 210.0
 offset_bottom = 150.0
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
+shortcut = SubResource("Shortcut_y21ef")
 text = "100"
 
 [node name="FactoryIcon" type="Sprite2D" parent="Panel/BuyFactoryButton"]
@@ -82,12 +108,14 @@ region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
 
 [node name="BuyRocketButton" type="Button" parent="Panel"]
+layout_mode = 0
 offset_left = 10.0
 offset_top = 160.0
 offset_right = 210.0
 offset_bottom = 200.0
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
+shortcut = SubResource("Shortcut_44b6p")
 text = "100"
 icon_alignment = 2
 
