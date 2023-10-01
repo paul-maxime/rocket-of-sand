@@ -36,5 +36,8 @@ func place_building(block_type, layer, coordinate, screen_coordinate, wall_click
 		new_building.z_index = tile_map.get_layer_z_index(layer + 1)
 		new_building.position = tile_map.map_to_local(building_coordinates[0])
 		add_child(new_building)
+		tile_map.set_cell(layer + 1, building_coordinates[0], 1, Vector2i(4, 3))
+		# Spawn top part. Don't ask questions.
+		tile_map.set_cell(tile_map.get_layers_count() - 1, building_coordinates[1], 1, Vector2i(4, 0))
 	else:
 		print('No.')

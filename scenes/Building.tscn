@@ -1,12 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://83yyfufbq317"]
+[gd_scene load_steps=2 format=3 uid="uid://83yyfufbq317"]
 
 [ext_resource type="Script" path="res://scripts/Building.gd" id="1_t37nm"]
-[ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="2_h6vrd"]
 
 [node name="Building" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_t37nm")
-
-[node name="Factory" type="Sprite2D" parent="."]
-position = Vector2(8, -24)
-texture = ExtResource("2_h6vrd")
