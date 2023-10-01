@@ -46,6 +46,8 @@ offset_left = 40.0
 offset_top = 8.0
 offset_right = 220.0
 offset_bottom = 48.0
+tooltip_text = "Available sand"
+theme = ExtResource("2_iwdsn")
 
 [node name="SandLabel" type="Label" parent="Panel/CenterContainer"]
 layout_mode = 2
@@ -64,9 +66,11 @@ offset_left = 10.0
 offset_top = 60.0
 offset_right = 210.0
 offset_bottom = 100.0
+tooltip_text = "Build a drill [1]"
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
 shortcut = SubResource("Shortcut_abmxe")
+shortcut_in_tooltip = false
 text = "100"
 
 [node name="DrillIcon" type="Sprite2D" parent="Panel/BuyDrillButton"]
@@ -89,9 +93,11 @@ offset_left = 10.0
 offset_top = 110.0
 offset_right = 210.0
 offset_bottom = 150.0
+tooltip_text = "Build a factory [2]"
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
 shortcut = SubResource("Shortcut_y21ef")
+shortcut_in_tooltip = false
 text = "100"
 
 [node name="FactoryIcon" type="Sprite2D" parent="Panel/BuyFactoryButton"]
@@ -113,9 +119,11 @@ offset_left = 10.0
 offset_top = 160.0
 offset_right = 210.0
 offset_bottom = 200.0
+tooltip_text = "Build the rocket [3]"
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
 shortcut = SubResource("Shortcut_44b6p")
+shortcut_in_tooltip = false
 text = "100"
 icon_alignment = 2
 
