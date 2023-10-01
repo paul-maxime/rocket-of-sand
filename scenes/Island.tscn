@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://twwxhanjo1e0"]
 
-[ext_resource type="Material" path="res://materials/Water.tres" id="1_1nyjh"]
+[ext_resource type="Material" uid="uid://ckhhgojge2pjb" path="res://materials/Water.tres" id="1_1nyjh"]
 [ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="2_ro0ue"]
 [ext_resource type="Script" path="res://scripts/Water.gd" id="3_skh8d"]
 

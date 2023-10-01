@@ -1,9 +1,9 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://ckhhgojge2pjb"]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://biw5l8ucobjye"]
 
-[ext_resource type="Shader" uid="uid://dhfq56v0cy420" path="res://shaders/Water.tres" id="1_h4b1n"]
+[ext_resource type="Shader" uid="uid://dhfq56v0cy420" path="res://shaders/Water.tres" id="1_af6ds"]
 
 [resource]
-shader = ExtResource("1_h4b1n")
+shader = ExtResource("1_af6ds")
 shader_parameter/Offset = 0
 shader_parameter/Pixelate = false
 shader_parameter/Random = true
