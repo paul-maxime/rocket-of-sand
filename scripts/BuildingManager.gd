@@ -51,7 +51,7 @@ func get_valid_coordinates(block_type, layer, coordinate, wall_click):
 			return []
 	return building_coordinates
 
-func place_building(block_type, layer, coordinate, screen_coordinate, wall_click):
+func place_building(block_type, layer, coordinate, _screen_coordinate, wall_click):
 	if (!build_mode || !check_price()):
 		return
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, wall_click)
@@ -118,7 +118,7 @@ func update_price():
 			gathering_manager.add_sand(-drill_price)
 			drill_price = new_price
 
-func move_preview(block_type, layer, coordinate, screen_coordinate, on_wall):
+func move_preview(block_type, layer, coordinate, _screen_coordinate, on_wall):
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, on_wall)
 	if (building_coordinates != [] && check_price()):
 		preview.get_child(0).material.set_shader_parameter('IsValid', true)
