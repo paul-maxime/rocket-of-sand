@@ -19,9 +19,13 @@ operator = 2
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_6dcvg"]
 parameter_name = "Valid"
+default_value_enabled = true
+default_value = Color(0.164706, 1, 0, 0.654902)
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_ykljw"]
 parameter_name = "Invalid"
+default_value_enabled = true
+default_value = Color(1, 0, 0, 0.627451)
 
 [sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_xgtx3"]
 parameter_name = "IsValid"
@@ -52,8 +56,8 @@ code = "shader_type canvas_item;
 render_mode blend_mix;
 
 uniform bool IsValid = true;
-uniform vec4 Valid : source_color;
-uniform vec4 Invalid : source_color;
+uniform vec4 Valid : source_color = vec4(0.164706, 1.000000, 0.000000, 0.654902);
+uniform vec4 Invalid : source_color = vec4(1.000000, 0.000000, 0.000000, 0.627451);
 uniform float Speed = 5;
 
 
@@ -131,14 +135,14 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-478.544, 276.694)
+graph_offset = Vector2(-596.544, 121.694)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(780, 180)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_6dcvg")
 nodes/fragment/2/position = Vector2(-580, 160)
 nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_ykljw")
-nodes/fragment/3/position = Vector2(-580, 320)
+nodes/fragment/3/position = Vector2(-580, 360)
 nodes/fragment/4/node = SubResource("VisualShaderNodeBooleanParameter_xgtx3")
 nodes/fragment/4/position = Vector2(-580, -20)
 nodes/fragment/5/node = SubResource("VisualShaderNodeInput_gac6t")

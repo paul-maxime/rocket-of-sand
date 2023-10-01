@@ -7,3 +7,4 @@ shader = ExtResource("1_fk8w3")
 shader_parameter/IsValid = true
 shader_parameter/Valid = Color(0.164706, 1, 0, 0.654902)
 shader_parameter/Invalid = Color(1, 0, 0, 0.627451)
+shader_parameter/Speed = 5.0
