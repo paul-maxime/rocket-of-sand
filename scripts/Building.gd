@@ -14,12 +14,12 @@ var drill_timer = 0
 func _enter_tree():
 	match type:
 		'FACTORY':
-			gathering_manager.factory_power += 1
+			gathering_manager.update_power(1)
 
 func _exit_tree():
 	match type:
 		'FACTORY':
-			gathering_manager.factory_power -= 1
+			gathering_manager.update_power(-1)
 
 func _process(deltaTime):
 	match type:
@@ -29,5 +29,5 @@ func _process(deltaTime):
 func drill_update(deltaTime):
 	drill_timer += deltaTime
 	while drill_timer > 1 / drill_ticks_per_second:
-		gathering_manager.add_sand(drill_power + gathering_manager.factory_power * gathering_manager.factory_bonus)
+		gathering_manager.increase_sand()
 		drill_timer -= 1 / drill_ticks_per_second

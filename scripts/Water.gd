@@ -45,6 +45,7 @@ func erase_sand(layer, coordinates):
 		var mining_progress_index = mining_progress[index] / 2
 		set_cell(layer, coordinates, 1, Vector2i(mining_progress_index, 4))
 		return
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	if layer == water_level:
 		set_cell(layer, coordinates, 1, Vector2i(1, 0))
 	else:

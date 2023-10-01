@@ -38,9 +38,9 @@ script = ExtResource("1_1u74w")
 offset_left = 12.0
 offset_top = 12.0
 offset_right = 232.0
-offset_bottom = 220.0
+offset_bottom = 263.0
 
-[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+[node name="SandLabelContainer" type="CenterContainer" parent="Panel"]
 layout_mode = 0
 offset_left = 40.0
 offset_top = 8.0
@@ -49,12 +49,32 @@ offset_bottom = 48.0
 tooltip_text = "Available sand"
 theme = ExtResource("2_iwdsn")
 
-[node name="SandLabel" type="Label" parent="Panel/CenterContainer"]
+[node name="SandLabel" type="Label" parent="Panel/SandLabelContainer"]
 layout_mode = 2
 theme = ExtResource("2_iwdsn")
 text = "0"
 
-[node name="SandIcon" type="Sprite2D" parent="Panel/CenterContainer/SandLabel"]
+[node name="SandIcon" type="Sprite2D" parent="Panel/SandLabelContainer/SandLabel"]
+position = Vector2(-43, 0)
+texture = ExtResource("3_br2wc")
+centered = false
+region_rect = Rect2(0, 0, 16, 16)
+
+[node name="PowerLabelContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 2
+offset_left = 123.0
+offset_top = 55.0
+offset_right = 137.0
+offset_bottom = 87.0
+tooltip_text = "Available sand"
+theme = ExtResource("2_iwdsn")
+
+[node name="PowerLabel" type="Label" parent="Panel/PowerLabelContainer"]
+layout_mode = 2
+theme = ExtResource("2_iwdsn")
+text = "0"
+
+[node name="SandIcon" type="Sprite2D" parent="Panel/PowerLabelContainer/PowerLabel"]
 position = Vector2(-43, 0)
 texture = ExtResource("3_br2wc")
 centered = false
@@ -63,9 +83,9 @@ region_rect = Rect2(0, 0, 16, 16)
 [node name="BuyDrillButton" type="Button" parent="Panel"]
 layout_mode = 2
 offset_left = 10.0
-offset_top = 60.0
+offset_top = 98.0
 offset_right = 210.0
-offset_bottom = 100.0
+offset_bottom = 138.0
 tooltip_text = "Build a drill [1]"
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
@@ -90,9 +110,9 @@ region_rect = Rect2(0, 0, 16, 16)
 [node name="BuyFactoryButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 110.0
+offset_top = 148.0
 offset_right = 210.0
-offset_bottom = 150.0
+offset_bottom = 188.0
 tooltip_text = "Build a factory [2]"
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
@@ -116,9 +136,9 @@ region_rect = Rect2(0, 0, 16, 16)
 [node name="BuyRocketButton" type="Button" parent="Panel"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 160.0
+offset_top = 198.0
 offset_right = 210.0
-offset_bottom = 200.0
+offset_bottom = 238.0
 tooltip_text = "Build the rocket [3]"
 focus_mode = 0
 theme = ExtResource("2_iwdsn")
