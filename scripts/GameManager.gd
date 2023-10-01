@@ -30,11 +30,12 @@ func _process(deltaTime):
 
 func build_rocket():
 	if (gathering_manager.current_sand >= rocket_price):
-		gathering_manager.add_sand(-rocket_price)
-		rocket_price *= 10
+		var new_price = rocket_price * 10
 		rocket_progress = min(rocket_progress + 1, rocket_states.size())
-		interface_manager.update_rocket_price(rocket_price, gathering_manager.current_sand, rocket_states[min(rocket_progress, rocket_states.size() - 1)])
+		interface_manager.update_rocket_price(new_price, gathering_manager.current_sand, rocket_states[min(rocket_progress, rocket_states.size() - 1)])
 		rocket.get_child(0).texture = rocket_states[rocket_progress - 1]
+		gathering_manager.add_sand(-rocket_price)
+		rocket_price = new_price
 
 func check_game_over(water_level):
 	if (water_level == death_layer):

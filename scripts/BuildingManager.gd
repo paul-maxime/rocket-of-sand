@@ -2,11 +2,15 @@ extends Node2D
 
 @onready var tile_map: TileMap = $'../../Island'
 @onready var gathering_manager = $'../GatheringManager'
+@onready var interface_manager = $'/root/MainScene/CanvasLayer'
 @export var building_prefab: PackedScene
 
 var preview
 var build_mode = false
 var building_type = ''
+
+var drill_price = 100
+var factory_price = 100
 
 func _ready():
 	var event_manager = $'../EventManager'
@@ -48,7 +52,7 @@ func get_valid_coordinates(block_type, layer, coordinate, wall_click):
 	return building_coordinates
 
 func place_building(block_type, layer, coordinate, screen_coordinate, wall_click):
-	if (!build_mode):
+	if (!build_mode || !check_price()):
 		return
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, wall_click)
 	if (building_coordinates == []):
@@ -66,6 +70,28 @@ func place_building(block_type, layer, coordinate, screen_coordinate, wall_click
 	# Spawn top part. Don't ask questions.
 	tile_map.set_cell(tile_map.get_layers_count() - 1, building_coordinates[1], 1, Vector2i(4, 0))
 	preview.get_child(0).material.set_shader_parameter('IsValid', false)
+	update_price()
+
+func check_price():
+	match building_type:
+		'FACTORY':
+			return gathering_manager.current_sand >= factory_price
+		'DRILL':
+			return gathering_manager.current_sand >= drill_price
+	return false
+
+func update_price():
+	match building_type:
+		'FACTORY':
+			var new_price = factory_price * 2
+			interface_manager.update_factory_price(new_price)
+			gathering_manager.add_sand(-factory_price)
+			factory_price = new_price
+		'DRILL':
+			var new_price = drill_price * 2
+			interface_manager.update_drill_price(new_price)
+			gathering_manager.add_sand(-drill_price)
+			drill_price = new_price
 
 func move_preview(block_type, layer, coordinate, screen_coordinate, on_wall):
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, on_wall)
