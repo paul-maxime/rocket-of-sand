@@ -14,6 +14,7 @@ var rocket_price = 100
 @onready var interface_manager = $'/root/MainScene/CanvasLayer'
 
 func _ready():
+	randomize()
 	$'/root/MainScene/CanvasLayer/Panel/BuyRocketButton'.pressed.connect(build_rocket)
 	rocket.get_child(0).texture = null
 	water.the_water_rises.connect(check_game_over)

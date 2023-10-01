@@ -30,8 +30,10 @@ func increase_water_level():
 	for x in range(-grid.x / 2, grid.x / 2):
 		for y in range(-grid.y / 2, grid.y / 2):
 			var cell = get_cell_tile_data(water_level, Vector2i(x, y - 2 * water_level))
-			if (cell == null):
-				set_cell(water_level, Vector2i(x, y - 2 * water_level), 1, Vector2i(1, 0))
+			var cell_below = get_cell_tile_data(water_level - 1, Vector2i(x, y - 2 * (water_level - 1)))
+			var water_atlas = get_cell_atlas_coords(water_level - 1, Vector2i(x, y - 2 * (water_level - 1))) if cell_below != null and cell_below.terrain == 1 else Vector2i(randi_range(1, 3), 0)
+			if cell == null:
+				set_cell(water_level, Vector2i(x, y - 2 * water_level), 1, water_atlas)
 			if water_level > 0 && y < grid.y / 2 - 1 && x > -grid.x / 2:
 				set_cell(water_level - 1, Vector2i(x, y - 2 * (water_level - 1)), -1)
 
@@ -47,6 +49,6 @@ func erase_sand(layer, coordinates):
 		return
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 	if layer == water_level:
-		set_cell(layer, coordinates, 1, Vector2i(1, 0))
+		set_cell(layer, coordinates, 1, Vector2i(randi_range(1, 3), 0))
 	else:
 		set_cell(layer, coordinates, -1)
