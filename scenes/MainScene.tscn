@@ -17,7 +17,7 @@
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("5_sc47u")
-game_duration = 1000
+time_by_layer = 10
 
 [node name="BuildingManager" type="Node2D" parent="GameManager"]
 script = ExtResource("6_x8doe")

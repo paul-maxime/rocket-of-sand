@@ -7,6 +7,8 @@ var offset_max = 8
 var water_material
 var update_offset = true
 
+signal the_water_rises(water_level)
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	water_material = tile_set.get_source(1).get_tile_data(Vector2i(1, 0), 0).material
@@ -24,6 +26,7 @@ func increase_water_level():
 	if (water_level + 1 >= get_layers_count()):
 		return
 	water_level += 1
+	the_water_rises.emit(water_level)
 	for x in range(-grid.x / 2, grid.x / 2):
 		for y in range(-grid.y / 2, grid.y / 2):
 			var cell = get_cell_tile_data(water_level, Vector2i(x, y - 2 * water_level))

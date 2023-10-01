@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var tile_map: TileMap = $'../../Island'
+@onready var gathering_manager = $'../GatheringManager'
 @export var building_prefab: PackedScene
 
 var preview
@@ -20,6 +21,7 @@ func _ready():
 	event_manager.block_hovered.connect(move_preview)
 	$'/root/MainScene/CanvasLayer/Panel/BuyDrillButton'.pressed.connect(preview_drill)
 	$'/root/MainScene/CanvasLayer/Panel/BuyFactoryButton'.pressed.connect(preview_factory)
+	tile_map.the_water_rises.connect(destroy_buildings)
 
 func check_free_space(layer, coordinate):
 	var cell = tile_map.get_cell_tile_data(layer, coordinate)
@@ -52,11 +54,13 @@ func place_building(block_type, layer, coordinate, screen_coordinate, wall_click
 	if (building_coordinates == []):
 		return
 	var new_building: Building = building_prefab.instantiate()
+	new_building.gathering_manager = gathering_manager
 	new_building.coordinates = building_coordinates
 	new_building.layer = layer + 1
 	new_building.island = tile_map
 	new_building.z_index = tile_map.get_layer_z_index(layer + 1)
 	new_building.position = tile_map.map_to_local(building_coordinates[0])
+	new_building.type = building_type
 	add_child(new_building)
 	tile_map.set_cell(layer + 1, building_coordinates[0], 1, Vector2i(4, 3))
 	# Spawn top part. Don't ask questions.
@@ -88,3 +92,10 @@ func preview_drill():
 
 func preview_factory():
 	set_build_mode('FACTORY')
+
+func destroy_buildings(water_level):
+	for b in get_children():
+		if (b.layer == water_level && b.coordinates != []):
+			tile_map.set_cell(water_level, b.coordinates[0], -1)
+			tile_map.set_cell(tile_map.get_layers_count() - 1, b.coordinates[1], -1)
+			remove_child(b)

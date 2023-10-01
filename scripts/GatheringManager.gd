@@ -18,9 +18,12 @@ func on_block_clicked(block_type, _layer, _coordinate, screen_coordinate, wall_c
 		particles.amount = gathering_power
 		add_child(particles)
 		get_tree().create_timer(particles.lifetime).timeout.connect(particles.queue_free)
-		current_sand += gathering_power
-		$/root/MainScene/CanvasLayer.update_sand(current_sand)
+		add_sand(gathering_power)
 		gathering_power += 1
+
+func add_sand(amount):
+		current_sand += amount
+		$/root/MainScene/CanvasLayer.update_sand(current_sand)
 
 func on_block_hovered(block_type, _layer, _coordinate, _screen_coordinate, wall_click):
 	if block_type == 0 && !wall_click:
