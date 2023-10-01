@@ -95,7 +95,7 @@ func update_price():
 
 func move_preview(block_type, layer, coordinate, screen_coordinate, on_wall):
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, on_wall)
-	if (building_coordinates != []):
+	if (building_coordinates != [] && check_price()):
 		preview.get_child(0).material.set_shader_parameter('IsValid', true)
 		preview.position = tile_map.map_to_local(building_coordinates[0])
 	else:
