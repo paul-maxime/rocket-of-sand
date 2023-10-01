@@ -23,7 +23,7 @@ func _unhandled_input(event):
 		var highest_tile_data = null
 		for l in range(tile_map.get_layers_count() - 1):
 			var tile_data = tile_map.get_cell_tile_data(l, Vector2i(tile_pos.x, tile_pos.y + 2))
-			if tile_data != null && l > highest_layer:
+			if tile_data != null and tile_data.terrain != 2 and l > highest_layer:
 				highest_tile_data = tile_data
 				highest_layer = l
 		var above_tile = tile_map.get_cell_tile_data(highest_layer + 1, tile_pos)
@@ -38,7 +38,7 @@ func _unhandled_input(event):
 		var highest_tile_data = null
 		for l in range(tile_map.get_layers_count() - 1):
 			var tile_data = tile_map.get_cell_tile_data(l, Vector2i(tile_pos.x, tile_pos.y + 2))
-			if tile_data != null && l > highest_layer:
+			if tile_data != null and tile_data.terrain != 2 and l > highest_layer:
 				highest_tile_data = tile_data
 				highest_layer = l
 		var above_tile = tile_map.get_cell_tile_data(highest_layer + 1, tile_pos)
