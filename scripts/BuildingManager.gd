@@ -21,7 +21,8 @@ func _ready():
 	preview.island = tile_map
 
 	preview.visible = false
-	preview.get_node("BuildPreview").visible = true
+	preview.get_node("FactoryPreview").visible = true
+	preview.get_node("DrillPreview").visible = false
 
 	$BuildingsContainer.add_child(preview)
 	event_manager.block_hovered.connect(move_preview)
@@ -186,9 +187,13 @@ func _input(event):
 
 func preview_drill():
 	set_build_mode('DRILL')
+	preview.get_node("FactoryPreview").visible = false
+	preview.get_node("DrillPreview").visible = true
 
 func preview_factory():
 	set_build_mode('FACTORY')
+	preview.get_node("FactoryPreview").visible = true
+	preview.get_node("DrillPreview").visible = false
 
 func destroy_buildings(water_level):
 	for b in $BuildingsContainer.get_children():

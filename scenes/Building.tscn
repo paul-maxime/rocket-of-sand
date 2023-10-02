@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://83yyfufbq317"]
+[gd_scene load_steps=7 format=3 uid="uid://83yyfufbq317"]
 
 [ext_resource type="Script" path="res://scripts/Building.gd" id="1_t37nm"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="2_av3cq"]
 [ext_resource type="Material" uid="uid://cibcewx1u1kvy" path="res://materials/BuildPreview.tres" id="2_ldx1c"]
+[ext_resource type="Texture2D" uid="uid://dehc1r8ewbxeu" path="res://resources/drill.png" id="4_seoe0"]
 
 [sub_resource type="Gradient" id="Gradient_0s8hy"]
 offsets = PackedFloat32Array(0, 0.631356)
@@ -17,12 +18,19 @@ fill_from = Vector2(0.5, 0.5)
 y_sort_enabled = true
 script = ExtResource("1_t37nm")
 
-[node name="BuildPreview" type="Sprite2D" parent="."]
+[node name="FactoryPreview" type="Sprite2D" parent="."]
 visible = false
 z_index = 1000
 material = ExtResource("2_ldx1c")
 position = Vector2(8, -24)
 texture = ExtResource("2_av3cq")
+
+[node name="DrillPreview" type="Sprite2D" parent="."]
+visible = false
+z_index = 1000
+material = ExtResource("2_ldx1c")
+position = Vector2(8, -24)
+texture = ExtResource("4_seoe0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.572549, 0.160784, 1)
