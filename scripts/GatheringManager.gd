@@ -3,6 +3,7 @@ extends Node2D
 @export var click_particles: PackedScene
 @onready var building_manager = $'../BuildingManager'
 @onready var tile_map: TileMap = $'../../Island'
+@onready var interface_layer: CanvasLayer = $/root/MainScene/CanvasLayer
 
 var current_sand = 0
 var gathering_power = 1
@@ -34,11 +35,11 @@ func create_gathering_particles(screen_coordinates):
 
 func add_sand(amount):
 	current_sand += amount
-	$/root/MainScene/CanvasLayer.update_sand(current_sand)
+	interface_layer.update_sand(current_sand)
 
 func update_power(delta):
 	gathering_power += delta
-	$/root/MainScene/CanvasLayer.update_power(gathering_power)
+	interface_layer.update_power(gathering_power)
 
 func on_block_hovered(block_type, _layer, _coordinate, _screen_coordinate, wall_click):
 	if block_type == 0 && !wall_click:

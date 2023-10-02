@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=29 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -23,14 +23,32 @@
 [ext_resource type="AudioStream" uid="uid://osr0l1f77ns0" path="res://resources/sounds/sand3.ogg" id="16_acptx"]
 [ext_resource type="AudioStream" uid="uid://b01o6e0m7neyh" path="res://resources/sounds/sand4.ogg" id="17_lv65k"]
 [ext_resource type="AudioStream" uid="uid://da1r5oy6rsdnd" path="res://resources/sounds/metal-movement.ogg" id="20_2s8ah"]
+[ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
+[ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
+[ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
+
+[sub_resource type="Gradient" id="Gradient_gsdcp"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_p0amq"]
+gradient = SubResource("Gradient_gsdcp")
+width = 128
+height = 128
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
 
 [node name="MainScene" type="Node2D"]
 
 [node name="Island" parent="." instance=ExtResource("1_1buq4")]
 
+[node name="DirectionalLight" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0.745098, 1)
+energy = 0.0
+blend_mode = 1
+
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("rocket")]
 script = ExtResource("5_sc47u")
-time_by_layer = 10
 rocket = NodePath("../Rocket")
 rocket_states = Array[CompressedTexture2D]([ExtResource("3_npj2q"), ExtResource("4_m8r0k"), ExtResource("5_euwcr"), ExtResource("6_hfs1a"), ExtResource("7_5urc3"), ExtResource("8_s342a")])
 
@@ -85,10 +103,23 @@ zoom = Vector2(2, 2)
 script = ExtResource("10_obdi1")
 
 [node name="Rocket" type="Node2D" parent="."]
-position = Vector2(-64, -224)
+position = Vector2(-57, -222)
 
 [node name="Sprite" type="Sprite2D" parent="Rocket"]
 z_index = 10
 texture = ExtResource("11_nuyi2")
 
+[node name="PointLight" type="PointLight2D" parent="Rocket"]
+visible = false
+position = Vector2(0, 60)
+energy = 0.5
+texture = SubResource("GradientTexture2D_p0amq")
+
 [node name="CanvasLayer" parent="." instance=ExtResource("9_vyb6q")]
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("24_5jh30")
+volume_db = -12.0
+autoplay = true
+script = ExtResource("25_1uvn2")
+next_music = ExtResource("26_xpaq0")

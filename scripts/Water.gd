@@ -4,7 +4,7 @@ class_name Water
 var water_level = -1
 var grid = Vector2i(50, 100)
 var offset_max = 8
-var water_material
+var water_material: ShaderMaterial
 var update_offset = true
 
 signal the_water_rises(water_level)
@@ -34,7 +34,7 @@ func increase_water_level():
 			var water_atlas = get_cell_atlas_coords(water_level - 1, Vector2i(x, y - 2 * (water_level - 1))) if cell_below != null and cell_below.terrain == 1 else Vector2i(randi_range(1, 3), 0)
 			if cell == null:
 				set_cell(water_level, Vector2i(x, y - 2 * water_level), 1, water_atlas)
-			if water_level > 0 && y < grid.y / 2 - 1 && x > -grid.x / 2:
+			if water_level > 0 && cell_below.terrain != 0:
 				set_cell(water_level - 1, Vector2i(x, y - 2 * (water_level - 1)), -1)
 	if water_level > 0:
 		$WaterRisesSound.play()

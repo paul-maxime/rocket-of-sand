@@ -9,8 +9,8 @@ var preview
 var build_mode = false
 var building_type = ''
 
-var drill_price = 100
-var factory_price = 100
+var drill_price = 10
+var factory_price = 20
 
 func _ready():
 	var event_manager = $'../EventManager'
@@ -131,12 +131,12 @@ func check_price():
 func update_price():
 	match building_type:
 		'FACTORY':
-			var new_price = factory_price * 2
+			var new_price = floor(factory_price * 1.5)
 			interface_manager.update_factory_price(new_price)
 			gathering_manager.add_sand(-factory_price)
 			factory_price = new_price
 		'DRILL':
-			var new_price = drill_price * 2
+			var new_price = floor(drill_price * 1.2)
 			interface_manager.update_drill_price(new_price)
 			gathering_manager.add_sand(-drill_price)
 			drill_price = new_price
@@ -198,4 +198,4 @@ func destroy_buildings(water_level):
 
 			tile_map.set_cell(layer + 6, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), -1)
 
-			remove_child(b)
+			$BuildingsContainer.remove_child(b)

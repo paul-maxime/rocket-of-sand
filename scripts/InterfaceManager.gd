@@ -13,6 +13,8 @@ var rocket_price = 100
 func _ready():
 	update_sand(0)
 	update_power(1)
+	update_drill_price($/root/MainScene/GameManager/BuildingManager.drill_price)
+	update_factory_price($/root/MainScene/GameManager/BuildingManager.factory_price)
 
 func update_sand(value: int):
 	sand_label.text = str(value)
