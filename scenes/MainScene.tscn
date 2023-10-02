@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=32 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -27,6 +27,7 @@
 [ext_resource type="Script" path="res://scripts/PauseManager.gd" id="20_51ogq"]
 [ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
+[ext_resource type="AudioStream" uid="uid://b36gkbq3vv3xn" path="res://resources/sounds/rocket.ogg" id="25_110fp"]
 [ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
 
 [sub_resource type="Gradient" id="Gradient_gsdcp"]
@@ -123,6 +124,10 @@ position = Vector2(0, 60)
 color = Color(1, 0.862745, 0.862745, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_p0amq")
+
+[node name="RocketSound" type="AudioStreamPlayer" parent="Rocket"]
+stream = ExtResource("25_110fp")
+volume_db = -6.0
 
 [node name="CanvasLayer" parent="." instance=ExtResource("9_vyb6q")]
 
