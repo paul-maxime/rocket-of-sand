@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://scripts/EventManager.gd" id="7_66p1s"]
 [ext_resource type="Texture2D" uid="uid://dlgxb4o7pkbk" path="res://resources/rocket6.png" id="8_s342a"]
 [ext_resource type="Script" path="res://scripts/GatheringManager.gd" id="8_xk1pp"]
-[ext_resource type="Texture2D" uid="uid://cstfnkr8oq80o" path="res://resources/rocket7.png" id="9_3msk0"]
+[ext_resource type="Texture2D" uid="uid://ux7gqxnraweb" path="res://resources/rocket7.png" id="9_3msk0"]
 [ext_resource type="PackedScene" uid="uid://cmbonu0v146nc" path="res://scenes/InterfaceLayer.tscn" id="9_vyb6q"]
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
@@ -27,7 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
 [ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
-[ext_resource type="Material" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
+[ext_resource type="Material" uid="uid://bo7yddghhmj18" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="29_3o8ly"]
 
 [sub_resource type="Gradient" id="Gradient_gsdcp"]

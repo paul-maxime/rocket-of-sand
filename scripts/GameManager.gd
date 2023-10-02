@@ -8,10 +8,10 @@ extends Node2D
 var time = 0
 var rocket_progress = 0
 var rocket_price = 100
-var is_game_won = false
 
 enum states {PLAYING, WIN, DEAD}
 var game_state = states.PLAYING
+var restart_with_left_click = false
 
 @onready var water = $"../Island"
 @onready var gathering_manager = $'GatheringManager'
@@ -58,7 +58,7 @@ func build_rocket():
 			win_the_game()
 
 func win_the_game():
-	is_game_won = true
+	game_state = states.WIN
 	interface_layer.visible = false
 	rocket.z_index = 50
 	await get_tree().create_timer(1).timeout
@@ -68,14 +68,18 @@ func win_the_game():
 	tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y - 1000), 10).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 func _input(event):
-	if event is InputEventKey && event.keycode == KEY_R && game_state == states.DEAD:
+	if game_state == states.DEAD && (event is InputEventKey && event.keycode == KEY_R) || (restart_with_left_click && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT):
 		get_tree().reload_current_scene()
 
 func check_game_over(water_level):
-	if water_level == game_over_layer and not is_game_won:
+	if water_level == game_over_layer && game_state == states.PLAYING:
 		game_state = states.DEAD
 		rocket.visible = false
 		var game_over_panel = $/root/MainScene/CanvasLayer/GameOver
 		game_over_panel.visible = true
 		var game_over_tween = get_tree().create_tween()
 		game_over_tween.tween_property(game_over_panel, "modulate", Color(1, 1, 1, 1), 2).set_trans(Tween.TRANS_SINE)
+		game_over_tween.tween_callback(game_over_for_filthy_mobile_players)
+
+func game_over_for_filthy_mobile_players():
+	restart_with_left_click = true
