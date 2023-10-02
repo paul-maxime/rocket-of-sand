@@ -77,8 +77,8 @@ func win_the_game():
 	game_state = states.WIN
 	interface_layer.get_node("Panel").visible = false
 	$/root/MainScene/Camera.start_following_rocket(rocket)
+	await get_tree().create_timer(0.5).timeout
 	rocket.get_node("RocketSound").play()
-	await get_tree().create_timer(1).timeout
 	var tween = get_tree().create_tween().bind_node(self)
 	rocket.get_node("Sprite").texture = rocket_states[rocket_progress]
 	rocket.position.y += 5
