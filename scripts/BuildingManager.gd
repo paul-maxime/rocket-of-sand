@@ -10,7 +10,8 @@ var preview
 var build_mode = false
 var infinite_build_mode = false
 var building_type = ''
-var has_water = false
+var last_error = ''
+var error_color = Color.WHITE
 
 var drill_price = 10
 var factory_price = 20
@@ -46,19 +47,24 @@ func check_free_space(layer, coordinate):
 
 func get_valid_coordinates(block_type, layer, coordinate, wall_click):
 	if (wall_click || block_type != 0):
+		last_error = 'Invalid position'
 		return []
-	has_water = false
+	var has_water = false
 	for ground_coord in [coordinate, coordinate + Vector2i(1, 0), coordinate + Vector2i(abs(coordinate.y % 2), 1), coordinate + Vector2i(abs(coordinate.y % 2), -1)]:
 		var ground_cell = tile_map.get_cell_tile_data(layer, ground_coord)
 		if (ground_cell == null || ground_cell.terrain != 0):
+			last_error = 'Invalid position'
 			return []
 		if !has_water and is_next_to_water(layer, ground_coord):
 			has_water = true
 	if !has_water and building_type == "FACTORY":
+		error_color = Color('#4884d4')
+		last_error = 'Requires water'
 		return []
 	var building_coordinates = [coordinate + Vector2i(0, -2), coordinate + Vector2i(1, -2), coordinate + Vector2i(abs(coordinate.y % 2), -1), coordinate + Vector2i(abs(coordinate.y % 2), -3)]
 	for b_coord in building_coordinates:
 		if (!check_free_space(layer + 1, b_coord)):
+			last_error = 'Invalid position'
 			return []
 	return building_coordinates
 
@@ -76,20 +82,29 @@ func is_next_to_water(layer, coordinates):
 
 	return false
 
+func spawn_error_message(text):
+	var message = factory_error_message.instantiate()
+	message.get_child(0).text = text
+	message.get_child(0).set("theme_override_colors/font_color", error_color)
+	var mouse = get_global_mouse_position()
+	message.position = mouse
+	$MessagesContainer.add_child(message)
+	get_tree().create_tween().bind_node(self).tween_property(message, "position", mouse + Vector2(0, -30), 2)
+	var message_fade_out = get_tree().create_tween().bind_node(self)
+	message_fade_out.tween_property(message, "modulate", Color(1, 1, 1, 0), 2)
+	message_fade_out.tween_callback(message.queue_free)
+
+
 func place_building(block_type, layer, coordinate, _screen_coordinate, wall_click):
-	if (!build_mode || !check_price()):
+	error_color = Color('#D44848')
+	if !build_mode:
+		return
+	if !check_price():
+		spawn_error_message('Not enough currency')
 		return
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, wall_click)
 	if (building_coordinates == []):
-		if !has_water and building_type == "FACTORY":
-			var message = factory_error_message.instantiate()
-			var mouse = get_global_mouse_position()
-			message.position = mouse
-			$MessagesContainer.add_child(message)
-			get_tree().create_tween().bind_node(self).tween_property(message, "position", mouse + Vector2(0, -30), 2)
-			var message_fade_out = get_tree().create_tween().bind_node(self)
-			message_fade_out.tween_property(message, "modulate", Color(1, 1, 1, 0), 2)
-			message_fade_out.tween_callback(message.queue_free)
+		spawn_error_message(last_error)
 		return
 	var new_building: Building = building_prefab.instantiate()
 	new_building.gathering_manager = gathering_manager
