@@ -54,14 +54,17 @@ func build_rocket():
 		gathering_manager.add_sand(-rocket_price)
 		rocket_price = new_price
 		$UpgradeRocketSound.play()
-		if rocket_progress >= len(rocket_states):
+		if rocket_progress >= len(rocket_states) - 1:
 			win_the_game()
 
 func win_the_game():
 	is_game_won = true
 	interface_layer.visible = false
 	rocket.z_index = 50
+	await get_tree().create_timer(1).timeout
 	var tween = get_tree().create_tween()
+	rocket.get_node("Sprite").texture = rocket_states[rocket_progress]
+	rocket.position.y += 5
 	tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y - 1000), 10).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 func _input(event):

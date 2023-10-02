@@ -5,7 +5,7 @@ extends Node2D
 @onready var tile_map: TileMap = $'../../Island'
 @onready var interface_layer: CanvasLayer = $/root/MainScene/CanvasLayer
 
-var current_sand = 0
+var current_sand = 1000000
 var gathering_power = 1
 
 @onready var gathering_sounds = [$GatheringSound1, $GatheringSound2, $GatheringSound3, $GatheringSound4]

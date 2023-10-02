@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=32 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://scripts/EventManager.gd" id="7_66p1s"]
 [ext_resource type="Texture2D" uid="uid://dlgxb4o7pkbk" path="res://resources/rocket6.png" id="8_s342a"]
 [ext_resource type="Script" path="res://scripts/GatheringManager.gd" id="8_xk1pp"]
+[ext_resource type="Texture2D" uid="uid://cstfnkr8oq80o" path="res://resources/rocket7.png" id="9_3msk0"]
 [ext_resource type="PackedScene" uid="uid://cmbonu0v146nc" path="res://scenes/InterfaceLayer.tscn" id="9_vyb6q"]
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
@@ -26,7 +27,7 @@
 [ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
 [ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
-[ext_resource type="Material" uid="uid://bo7yddghhmj18" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
+[ext_resource type="Material" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="29_3o8ly"]
 
 [sub_resource type="Gradient" id="Gradient_gsdcp"]
@@ -52,7 +53,7 @@ blend_mode = 1
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("rocket")]
 script = ExtResource("5_sc47u")
 rocket = NodePath("../Rocket")
-rocket_states = Array[CompressedTexture2D]([ExtResource("3_npj2q"), ExtResource("4_m8r0k"), ExtResource("5_euwcr"), ExtResource("6_hfs1a"), ExtResource("7_5urc3"), ExtResource("8_s342a")])
+rocket_states = Array[CompressedTexture2D]([ExtResource("3_npj2q"), ExtResource("4_m8r0k"), ExtResource("5_euwcr"), ExtResource("6_hfs1a"), ExtResource("7_5urc3"), ExtResource("8_s342a"), ExtResource("9_3msk0")])
 
 [node name="BuildingManager" type="Node2D" parent="GameManager"]
 script = ExtResource("6_x8doe")
