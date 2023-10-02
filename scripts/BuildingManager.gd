@@ -20,19 +20,14 @@ func _ready():
 	preview.layer = 0
 	preview.island = tile_map
 
+	preview.visible = false
+	preview.get_node("BuildPreview").visible = true
+
 	$BuildingsContainer.add_child(preview)
 	event_manager.block_hovered.connect(move_preview)
 	$'/root/MainScene/CanvasLayer/Panel/BuyDrillButton'.pressed.connect(preview_drill)
 	$'/root/MainScene/CanvasLayer/Panel/BuyFactoryButton'.pressed.connect(preview_factory)
 	tile_map.the_water_rises.connect(destroy_buildings)
-
-	preload_then_hide_preview()
-
-func preload_then_hide_preview():
-	preview.visible = true
-	preview.get_node("BuildPreview").visible = true
-	await get_tree().create_timer(0.1).timeout
-	preview.visible = false
 
 func check_free_space(layer, coordinate):
 	var cell = tile_map.get_cell_tile_data(layer, coordinate)
