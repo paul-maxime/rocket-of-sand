@@ -7,6 +7,7 @@ extends Node2D
 
 var preview
 var build_mode = false
+var infinite_build_mode = false
 var building_type = ''
 
 var drill_price = 10
@@ -143,6 +144,8 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 		tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 8), 1, Vector2i(10, 1))
 		tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), 1, Vector2i(10, 0))
 	update_price()
+	if !infinite_build_mode:
+		set_build_mode('')
 
 func check_price():
 	match building_type:
@@ -175,7 +178,7 @@ func move_preview(block_type, layer, coordinate, _screen_coordinate, on_wall):
 		preview.position = (get_global_mouse_position() if on_wall else tile_map.map_to_local(coordinate + Vector2i(0, -2)))
 
 func set_build_mode(type):
-	var new_build_mode = building_type != type || !build_mode
+	var new_build_mode = type != '' && (building_type != type || !build_mode)
 	building_type = type
 	build_mode = new_build_mode
 	preview.visible = new_build_mode
@@ -184,6 +187,13 @@ func _input(event):
 	if build_mode && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_RIGHT:
 		build_mode = false
 		preview.visible = false
+	if event is InputEventKey:
+		if event.keycode == KEY_SHIFT:
+			if event.pressed:
+				infinite_build_mode = true
+			else:
+				infinite_build_mode = false
+	
 
 func preview_drill():
 	set_build_mode('DRILL')
