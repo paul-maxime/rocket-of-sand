@@ -9,6 +9,9 @@ var time = 0
 var rocket_progress = 0
 var rocket_price = 100
 
+enum states {PLAYING, WIN, DEAD}
+var game_state = states.PLAYING
+
 @onready var water = $"../Island"
 @onready var gathering_manager = $'GatheringManager'
 @onready var interface_manager = $'/root/MainScene/CanvasLayer'
@@ -49,6 +52,14 @@ func build_rocket():
 		rocket_price = new_price
 		$UpgradeRocketSound.play()
 
+func _input(event):
+	if event is InputEventKey && event.keycode == KEY_R && game_state == states.DEAD:
+		get_tree().reload_current_scene()
+
 func check_game_over(water_level):
 	if water_level == game_over_layer:
+		game_state = states.DEAD
 		rocket.visible = false
+		var game_over_tween = get_tree().create_tween()
+		print($/root/MainScene/CanvasLayer/GameOver)
+		game_over_tween.tween_property($/root/MainScene/CanvasLayer/GameOver, "modulate", Color(1, 1, 1, 1), 2).set_trans(Tween.TRANS_SINE)

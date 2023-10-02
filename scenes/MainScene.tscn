@@ -52,6 +52,7 @@ blend_mode = 1
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("rocket")]
 script = ExtResource("5_sc47u")
+game_duration = 1.0
 rocket = NodePath("../Rocket")
 rocket_states = Array[CompressedTexture2D]([ExtResource("3_npj2q"), ExtResource("4_m8r0k"), ExtResource("5_euwcr"), ExtResource("6_hfs1a"), ExtResource("7_5urc3"), ExtResource("8_s342a")])
 
@@ -131,6 +132,7 @@ script = ExtResource("25_1uvn2")
 next_music = ExtResource("26_xpaq0")
 
 [node name="ShaderLoader" type="Sprite2D" parent="."]
+visible = false
 z_index = 1000
 material = ExtResource("28_jnupe")
 texture = ExtResource("29_3o8ly")

@@ -1,6 +1,8 @@
 extends TileMap
 class_name Water
 
+@onready var game_manager = $'/root/MainScene/GameManager'
+
 var water_level = -1
 var grid = Vector2i(50, 100)
 var offset_max = 8
@@ -19,11 +21,11 @@ func update_water_offset(percent):
 	if (update_offset):
 		percent = clamp(percent, 0, 1)
 		water_material.set_shader_parameter('Offset', floor(percent * offset_max))
-		if (water_level >= get_layers_count() - 1 && percent < 0.2):
+		if (water_level >= game_manager.game_over_layer && percent < 0.2):
 			update_offset = false
 
 func increase_water_level():
-	if water_level + 1 >= get_layers_count():
+	if water_level + 1 > game_manager.game_over_layer:
 		return
 	water_level += 1
 	the_water_rises.emit(water_level)
