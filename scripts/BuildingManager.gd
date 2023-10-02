@@ -19,8 +19,11 @@ func _ready():
 	preview.coordinates = []
 	preview.layer = 0
 	preview.island = tile_map
-	preview.visible = false
-	preview.get_child(0).visible = true
+
+	preview.visible = true
+	preview.get_node("BuildPreview").visible = true
+	(func(): preview.visible = false).call_deferred()
+
 	$BuildingsContainer.add_child(preview)
 	event_manager.block_hovered.connect(move_preview)
 	$'/root/MainScene/CanvasLayer/Panel/BuyDrillButton'.pressed.connect(preview_drill)

@@ -15,6 +15,10 @@ run/main_scene="res://scenes/MainScene.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[audio]
+
+driver/mix_rate.web=44100
+
 [dotnet]
 
 project/assembly_name="Rocket Of Sand"
