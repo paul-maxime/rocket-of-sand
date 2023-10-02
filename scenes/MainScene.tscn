@@ -26,7 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
 [ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
-[ext_resource type="Material" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
+[ext_resource type="Material" uid="uid://bo7yddghhmj18" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="29_3o8ly"]
 
 [sub_resource type="Gradient" id="Gradient_gsdcp"]

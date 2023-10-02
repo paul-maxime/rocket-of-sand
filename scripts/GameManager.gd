@@ -72,6 +72,7 @@ func check_game_over(water_level):
 	if water_level == game_over_layer and not is_game_won:
 		game_state = states.DEAD
 		rocket.visible = false
+		var game_over_panel = $/root/MainScene/CanvasLayer/GameOver
+		game_over_panel.visible = true
 		var game_over_tween = get_tree().create_tween()
-		print($/root/MainScene/CanvasLayer/GameOver)
-		game_over_tween.tween_property($/root/MainScene/CanvasLayer/GameOver, "modulate", Color(1, 1, 1, 1), 2).set_trans(Tween.TRANS_SINE)
+		game_over_tween.tween_property(game_over_panel, "modulate", Color(1, 1, 1, 1), 2).set_trans(Tween.TRANS_SINE)
