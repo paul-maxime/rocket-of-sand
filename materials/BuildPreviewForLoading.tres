@@ -1,0 +1,11 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bo7yddghhmj18"]
+
+[ext_resource type="Shader" uid="uid://7owftqndnnsp" path="res://shaders/BuildPreview.tres" id="1_sm2mh"]
+
+[resource]
+shader = ExtResource("1_sm2mh")
+shader_parameter/IsValid = true
+shader_parameter/Valid = Color(0.164706, 1, 0, 0.654902)
+shader_parameter/Invalid = Color(1, 0, 0, 0.627451)
+shader_parameter/ForLoading = true
+shader_parameter/Speed = 5.0
