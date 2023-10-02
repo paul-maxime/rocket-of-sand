@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=30 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://osr0l1f77ns0" path="res://resources/sounds/sand3.ogg" id="16_acptx"]
 [ext_resource type="AudioStream" uid="uid://b01o6e0m7neyh" path="res://resources/sounds/sand4.ogg" id="17_lv65k"]
 [ext_resource type="AudioStream" uid="uid://da1r5oy6rsdnd" path="res://resources/sounds/metal-movement.ogg" id="20_2s8ah"]
+[ext_resource type="Script" path="res://scripts/PauseManager.gd" id="20_51ogq"]
 [ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
 [ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
@@ -92,6 +93,9 @@ max_polyphony = 2
 stream = ExtResource("17_lv65k")
 volume_db = 2.0
 max_polyphony = 2
+
+[node name="PauseManager" type="Node" parent="GameManager"]
+script = ExtResource("20_51ogq")
 
 [node name="UpgradeRocketSound" type="AudioStreamPlayer" parent="GameManager"]
 stream = ExtResource("20_2s8ah")
