@@ -86,8 +86,8 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 			var mouse = get_global_mouse_position()
 			message.position = mouse
 			$MessagesContainer.add_child(message)
-			get_tree().create_tween().tween_property(message, "position", mouse + Vector2(0, -30), 2)
-			var message_fade_out = get_tree().create_tween()
+			get_tree().create_tween().bind_node(self).tween_property(message, "position", mouse + Vector2(0, -30), 2)
+			var message_fade_out = get_tree().create_tween().bind_node(self)
 			message_fade_out.tween_property(message, "modulate", Color(1, 1, 1, 0), 2)
 			message_fade_out.tween_callback(message.queue_free)
 		return
@@ -204,7 +204,7 @@ func _input(event):
 				infinite_build_mode = true
 			else:
 				infinite_build_mode = false
-	
+
 
 func preview_drill():
 	set_build_mode('DRILL')

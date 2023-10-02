@@ -17,6 +17,8 @@ var restart_with_left_click = false
 @onready var gathering_manager = $'GatheringManager'
 @onready var interface_layer = $'/root/MainScene/CanvasLayer'
 
+var test_weird_reload = false
+
 func _ready():
 	randomize()
 	$'/root/MainScene/CanvasLayer/Panel/BuyRocketButton'.pressed.connect(build_rocket)
@@ -30,9 +32,9 @@ func start_playing():
 		$/root/MainScene/MusicPlayer.play()
 
 func increase_intensity_over_time():
-	var light_tween = get_tree().create_tween()
+	var light_tween = get_tree().create_tween().bind_node(self)
 	light_tween.tween_property($/root/MainScene/DirectionalLight, "energy", 1, game_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
-	var water_tween = get_tree().create_tween()
+	var water_tween = get_tree().create_tween().bind_node(self)
 	water_tween.tween_method(update_waves, 2.0, 8.0, game_duration).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 
 func update_waves(value: float):
@@ -40,6 +42,10 @@ func update_waves(value: float):
 	water.water_material.set_shader_parameter("Ampliture", value)
 
 func _process(deltaTime):
+	if test_weird_reload:
+		test_weird_reload = false
+		get_tree().reload_current_scene()
+		return
 	if game_state == states.WAITING:
 		return
 	var time_by_layer = game_duration / game_over_layer
@@ -70,7 +76,7 @@ func win_the_game():
 	rocket.z_index = 50
 	$/root/MainScene/Camera.start_following_rocket(rocket)
 	await get_tree().create_timer(1).timeout
-	var tween = get_tree().create_tween()
+	var tween = get_tree().create_tween().bind_node(self)
 	rocket.get_node("Sprite").texture = rocket_states[rocket_progress]
 	rocket.position.y += 5
 	tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y - 10000), 10).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
@@ -78,14 +84,14 @@ func win_the_game():
 	await get_tree().create_timer(5).timeout
 	var victory_panel = $/root/MainScene/CanvasLayer/Victory
 	victory_panel.visible = true
-	var victory_tween = get_tree().create_tween()
+	var victory_tween = get_tree().create_tween().bind_node(self)
 	victory_tween.tween_property(victory_panel, "modulate", Color(1, 1, 1, 1), 2).set_trans(Tween.TRANS_SINE)
 	victory_tween.tween_callback(game_over_for_filthy_mobile_players)
 
 func _input(event):
 	if game_state == states.DEAD or game_state == states.WIN:
 		if (event is InputEventKey && event.keycode == KEY_R) || (restart_with_left_click && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT):
-			get_tree().reload_current_scene()
+			test_weird_reload = true
 
 func check_game_over(water_level):
 	if water_level == game_over_layer && game_state == states.PLAYING:
@@ -93,7 +99,7 @@ func check_game_over(water_level):
 		rocket.visible = false
 		var game_over_panel = $/root/MainScene/CanvasLayer/GameOver
 		game_over_panel.visible = true
-		var game_over_tween = get_tree().create_tween()
+		var game_over_tween = get_tree().create_tween().bind_node(self)
 		game_over_tween.tween_property(game_over_panel, "modulate", Color(1, 1, 1, 1), 2).set_trans(Tween.TRANS_SINE)
 		game_over_tween.tween_callback(game_over_for_filthy_mobile_players)
 

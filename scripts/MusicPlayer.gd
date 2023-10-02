@@ -13,4 +13,4 @@ func on_finished():
 		play()
 
 func fadeout(time):
-	get_tree().create_tween().tween_property(self, "volume_db", -80, time)
+	get_tree().create_tween().bind_node(self).tween_property(self, "volume_db", -80, time)
