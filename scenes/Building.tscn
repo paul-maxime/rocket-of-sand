@@ -32,7 +32,15 @@ material = ExtResource("2_ldx1c")
 position = Vector2(8, -24)
 texture = ExtResource("4_seoe0")
 
-[node name="PointLight2D" type="PointLight2D" parent="."]
+[node name="FactoryLight" type="PointLight2D" parent="."]
+visible = false
 color = Color(1, 0.572549, 0.160784, 1)
+energy = 0.5
+texture = SubResource("GradientTexture2D_am36m")
+
+[node name="DrillLight" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(8, -8)
+color = Color(1, 0.796078, 0.647059, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_am36m")

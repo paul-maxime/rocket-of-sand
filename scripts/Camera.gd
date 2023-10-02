@@ -51,4 +51,3 @@ func start_following_rocket(rocket):
 	position_smoothing_enabled = true
 	position_smoothing_speed = 5
 	position = rocket.position
-	print(rocket)

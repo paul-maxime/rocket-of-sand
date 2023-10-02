@@ -6,8 +6,10 @@ extends Node2D
 @export var rocket_states: Array[CompressedTexture2D]
 
 var time = 0
-var rocket_progress = 0
+var rocket_progress: int = 0
 var rocket_price = 100
+
+var rocket_prices = [100, 1000, 5000, 15000, 50000, 100000, 0]
 
 enum states {WAITING, PLAYING, WIN, DEAD}
 var game_state = states.WAITING
@@ -24,6 +26,7 @@ func _ready():
 	$'/root/MainScene/CanvasLayer/Panel/BuyRocketButton'.pressed.connect(build_rocket)
 	rocket.get_child(0).texture = null
 	water.the_water_rises.connect(check_game_over)
+	update_waves(2.0)
 
 func start_playing():
 	if game_state == states.WAITING:
@@ -57,8 +60,8 @@ func _process(deltaTime):
 
 func build_rocket():
 	if (gathering_manager.current_sand >= rocket_price):
-		var new_price = rocket_price * 5
 		rocket_progress += 1
+		var new_price = rocket_prices[rocket_progress]
 		interface_layer.update_rocket_price(new_price, rocket_states[min(rocket_progress, rocket_states.size() - 1)])
 		rocket.get_node("Sprite").texture = rocket_states[rocket_progress - 1]
 		rocket.get_node("PointLight").visible = true

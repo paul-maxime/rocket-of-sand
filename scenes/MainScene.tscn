@@ -45,7 +45,7 @@ fill_to = Vector2(0.5, 0)
 [node name="Island" parent="." instance=ExtResource("1_1buq4")]
 
 [node name="DirectionalLight" type="DirectionalLight2D" parent="."]
-color = Color(1, 1, 0.745098, 1)
+color = Color(0.862745, 0.862745, 0.666667, 1)
 energy = 0.0
 blend_mode = 1
 
