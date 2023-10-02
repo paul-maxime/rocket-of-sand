@@ -66,7 +66,7 @@ func build_rocket():
 
 func win_the_game():
 	game_state = states.WIN
-	interface_layer.visible = false
+	interface_layer.get_node("Panel").visible = false
 	rocket.z_index = 50
 	$/root/MainScene/Camera.start_following_rocket(rocket)
 	await get_tree().create_timer(1).timeout
@@ -74,10 +74,18 @@ func win_the_game():
 	rocket.get_node("Sprite").texture = rocket_states[rocket_progress]
 	rocket.position.y += 5
 	tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y - 10000), 10).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
+	$/root/MainScene/MusicPlayer.fadeout(10.0)
+	await get_tree().create_timer(5).timeout
+	var victory_panel = $/root/MainScene/CanvasLayer/Victory
+	victory_panel.visible = true
+	var victory_tween = get_tree().create_tween()
+	victory_tween.tween_property(victory_panel, "modulate", Color(1, 1, 1, 1), 2).set_trans(Tween.TRANS_SINE)
+	victory_tween.tween_callback(game_over_for_filthy_mobile_players)
 
 func _input(event):
-	if game_state == states.DEAD && (event is InputEventKey && event.keycode == KEY_R) || (restart_with_left_click && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT):
-		get_tree().reload_current_scene()
+	if game_state == states.DEAD or game_state == states.WIN:
+		if (event is InputEventKey && event.keycode == KEY_R) || (restart_with_left_click && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT):
+			get_tree().reload_current_scene()
 
 func check_game_over(water_level):
 	if water_level == game_over_layer && game_state == states.PLAYING:

@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
 [ext_resource type="AudioStream" uid="uid://cofmwwpdc3gf" path="res://resources/sounds/digging.ogg" id="11_gfqu8"]
-[ext_resource type="PackedScene" uid="uid://ctyhjnha8f2m6" path="res://scenes/FactoryErrorMessage.tscn" id="12_842ln"]
+[ext_resource type="PackedScene" uid="uid://cou25l2hsyens" path="res://scenes/FactoryErrorMessage.tscn" id="12_842ln"]
 [ext_resource type="AudioStream" uid="uid://bu2dgvpyagycv" path="res://resources/sounds/metal.ogg" id="12_oqhcg"]
 [ext_resource type="AudioStream" uid="uid://xf3iqkn6uxpm" path="res://resources/sounds/sand1.ogg" id="14_ig4sr"]
 [ext_resource type="AudioStream" uid="uid://cxj6p65v5jv8x" path="res://resources/sounds/sand2.ogg" id="15_uxr5b"]
