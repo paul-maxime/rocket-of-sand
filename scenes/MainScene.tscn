@@ -131,6 +131,7 @@ script = ExtResource("25_1uvn2")
 next_music = ExtResource("26_xpaq0")
 
 [node name="ShaderLoader" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
 z_index = 1000
 material = ExtResource("28_8q82k")
 texture = ExtResource("29_3o8ly")
