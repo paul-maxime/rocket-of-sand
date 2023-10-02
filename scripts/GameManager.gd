@@ -68,11 +68,12 @@ func win_the_game():
 	game_state = states.WIN
 	interface_layer.visible = false
 	rocket.z_index = 50
+	$/root/MainScene/Camera.start_following_rocket(rocket)
 	await get_tree().create_timer(1).timeout
 	var tween = get_tree().create_tween()
 	rocket.get_node("Sprite").texture = rocket_states[rocket_progress]
 	rocket.position.y += 5
-	tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y - 1000), 10).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y - 10000), 10).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 
 func _input(event):
 	if game_state == states.DEAD && (event is InputEventKey && event.keycode == KEY_R) || (restart_with_left_click && event is InputEventMouseButton && event.button_index == MOUSE_BUTTON_LEFT):

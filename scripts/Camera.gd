@@ -8,6 +8,9 @@ var current_delta = Vector2()
 var previous_click_position = Vector2()
 var is_dragging: bool = false
 
+var is_following_rocket: bool = false
+var followed_rocket: Node2D
+
 const min_x = -800
 const max_x = 800
 const min_y = -400
@@ -27,6 +30,8 @@ func _unhandled_input(event):
 			current_zoom -= 1
 			zoom = Vector2(current_zoom, current_zoom)
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		if is_following_rocket:
+			return
 		if is_dragging or previous_click_position.distance_to(get_viewport().get_mouse_position()) > DRAG_MIN_DISTANCE:
 			is_dragging = true
 			current_delta += event.relative / current_zoom
@@ -35,3 +40,15 @@ func _unhandled_input(event):
 			if current_delta.y < min_y: current_delta.y = min_y
 			if current_delta.y > max_y: current_delta.y = max_y
 			position = (-current_delta).round()
+
+func _process(_delta):
+	if is_following_rocket:
+		position = followed_rocket.position
+
+func start_following_rocket(rocket):
+	is_following_rocket = true
+	followed_rocket = rocket
+	position_smoothing_enabled = true
+	position_smoothing_speed = 5
+	position = rocket.position
+	print(rocket)
