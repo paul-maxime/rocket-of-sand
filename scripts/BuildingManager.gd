@@ -121,7 +121,7 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 		preview.get_child(0).material.set_shader_parameter('IsValid', false)
 	elif building_type == "DRILL":
 		$PlaceDrillSound.play()
-		
+
 		tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x, building_coordinates[0].y), 1, Vector2i(6, 9))
 		tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1), 1, Vector2i(6, 8))
 		tile_map.set_cell(layer + 1, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y), 1, Vector2i(10, 9))
