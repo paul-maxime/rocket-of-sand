@@ -23,7 +23,7 @@ func update_water_offset(percent):
 			update_offset = false
 
 func increase_water_level():
-	if (water_level + 1 >= get_layers_count()):
+	if water_level + 1 >= get_layers_count():
 		return
 	water_level += 1
 	the_water_rises.emit(water_level)
@@ -36,6 +36,8 @@ func increase_water_level():
 				set_cell(water_level, Vector2i(x, y - 2 * water_level), 1, water_atlas)
 			if water_level > 0 && y < grid.y / 2 - 1 && x > -grid.x / 2:
 				set_cell(water_level - 1, Vector2i(x, y - 2 * (water_level - 1)), -1)
+	if water_level > 0:
+		$WaterRisesSound.play()
 
 
 var mining_progress = {}

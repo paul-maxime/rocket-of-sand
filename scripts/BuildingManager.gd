@@ -21,7 +21,7 @@ func _ready():
 	preview.island = tile_map
 	preview.visible = false
 	preview.get_child(0).visible = true
-	add_child(preview)
+	$BuildingsContainer.add_child(preview)
 	event_manager.block_hovered.connect(move_preview)
 	$'/root/MainScene/CanvasLayer/Panel/BuyDrillButton'.pressed.connect(preview_drill)
 	$'/root/MainScene/CanvasLayer/Panel/BuyFactoryButton'.pressed.connect(preview_factory)
@@ -31,7 +31,7 @@ func check_free_space(layer, coordinate):
 	var cell = tile_map.get_cell_tile_data(layer, coordinate)
 	if (cell != null):
 		return false
-	for b in get_children():
+	for b in $BuildingsContainer.get_children():
 		if (b.layer == layer):
 			for b_coord in b.coordinates:
 				if (b_coord == coordinate):
@@ -84,7 +84,12 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 	new_building.z_index = tile_map.get_layer_z_index(layer + 1)
 	new_building.position = tile_map.map_to_local(building_coordinates[0])
 	new_building.type = building_type
-	add_child(new_building)
+	$BuildingsContainer.add_child(new_building)
+
+	if building_type == "FACTORY":
+		$PlaceFactorySound.play()
+	elif building_type == "DRILL":
+		$PlaceDrillSound.play()
 
 	var x_offset = 0
 	if abs(building_coordinates[0].y % 2) == 1 :
@@ -163,7 +168,7 @@ func preview_factory():
 	set_build_mode('FACTORY')
 
 func destroy_buildings(water_level):
-	for b in get_children():
+	for b in $BuildingsContainer.get_children():
 		if b.layer == water_level && b.coordinates != []:
 			var layer = b.layer - 1
 			var building_coordinates = b.coordinates

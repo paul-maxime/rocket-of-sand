@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://twwxhanjo1e0"]
+[gd_scene load_steps=7 format=3 uid="uid://twwxhanjo1e0"]
 
 [ext_resource type="Material" uid="uid://ckhhgojge2pjb" path="res://materials/Water.tres" id="1_1nyjh"]
 [ext_resource type="Texture2D" uid="uid://bxeq6n0odpdc6" path="res://resources/Tileset.png" id="2_ro0ue"]
 [ext_resource type="Script" path="res://scripts/Water.gd" id="3_skh8d"]
+[ext_resource type="AudioStream" uid="uid://cfjbhpkvhv23x" path="res://resources/sounds/water.ogg" id="4_1q5t2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_47n1r"]
 texture = ExtResource("2_ro0ue")
@@ -229,3 +230,7 @@ layer_14/y_sort_origin = 0
 layer_14/z_index = 100
 layer_14/tile_data = PackedInt32Array()
 script = ExtResource("3_skh8d")
+
+[node name="WaterRisesSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1q5t2")
+volume_db = -2.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=24 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -15,7 +15,14 @@
 [ext_resource type="PackedScene" uid="uid://cmbonu0v146nc" path="res://scenes/InterfaceLayer.tscn" id="9_vyb6q"]
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
+[ext_resource type="AudioStream" uid="uid://cofmwwpdc3gf" path="res://resources/sounds/digging.ogg" id="11_gfqu8"]
 [ext_resource type="Texture2D" uid="uid://co1dhywe57swo" path="res://resources/rocket.png" id="11_nuyi2"]
+[ext_resource type="AudioStream" uid="uid://bu2dgvpyagycv" path="res://resources/sounds/metal.ogg" id="12_oqhcg"]
+[ext_resource type="AudioStream" uid="uid://xf3iqkn6uxpm" path="res://resources/sounds/sand1.ogg" id="14_ig4sr"]
+[ext_resource type="AudioStream" uid="uid://cxj6p65v5jv8x" path="res://resources/sounds/sand2.ogg" id="15_uxr5b"]
+[ext_resource type="AudioStream" uid="uid://osr0l1f77ns0" path="res://resources/sounds/sand3.ogg" id="16_acptx"]
+[ext_resource type="AudioStream" uid="uid://b01o6e0m7neyh" path="res://resources/sounds/sand4.ogg" id="17_lv65k"]
+[ext_resource type="AudioStream" uid="uid://da1r5oy6rsdnd" path="res://resources/sounds/metal-movement.ogg" id="20_2s8ah"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -31,12 +38,46 @@ rocket_states = Array[CompressedTexture2D]([ExtResource("3_npj2q"), ExtResource(
 script = ExtResource("6_x8doe")
 building_prefab = ExtResource("4_7bn8d")
 
+[node name="BuildingsContainer" type="Node2D" parent="GameManager/BuildingManager"]
+
+[node name="PlaceDrillSound" type="AudioStreamPlayer" parent="GameManager/BuildingManager"]
+stream = ExtResource("11_gfqu8")
+volume_db = -8.0
+
+[node name="PlaceFactorySound" type="AudioStreamPlayer" parent="GameManager/BuildingManager"]
+stream = ExtResource("12_oqhcg")
+volume_db = -8.0
+
 [node name="EventManager" type="Node2D" parent="GameManager"]
 script = ExtResource("7_66p1s")
 
 [node name="GatheringManager" type="Node2D" parent="GameManager"]
 script = ExtResource("8_xk1pp")
 click_particles = ExtResource("9_xv6p5")
+
+[node name="GatheringSound1" type="AudioStreamPlayer" parent="GameManager/GatheringManager"]
+stream = ExtResource("14_ig4sr")
+volume_db = 2.0
+max_polyphony = 2
+
+[node name="GatheringSound2" type="AudioStreamPlayer" parent="GameManager/GatheringManager"]
+stream = ExtResource("15_uxr5b")
+volume_db = 2.0
+max_polyphony = 2
+
+[node name="GatheringSound3" type="AudioStreamPlayer" parent="GameManager/GatheringManager"]
+stream = ExtResource("16_acptx")
+volume_db = 2.0
+max_polyphony = 2
+
+[node name="GatheringSound4" type="AudioStreamPlayer" parent="GameManager/GatheringManager"]
+stream = ExtResource("17_lv65k")
+volume_db = 2.0
+max_polyphony = 2
+
+[node name="UpgradeRocketSound" type="AudioStreamPlayer" parent="GameManager"]
+stream = ExtResource("20_2s8ah")
+volume_db = -4.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(-10, -10)

@@ -37,6 +37,7 @@ func build_rocket():
 		rocket.get_child(0).texture = rocket_states[rocket_progress - 1]
 		gathering_manager.add_sand(-rocket_price)
 		rocket_price = new_price
+		$UpgradeRocketSound.play()
 
 func check_game_over(water_level):
 	if (water_level == death_layer):

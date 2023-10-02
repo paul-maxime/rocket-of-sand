@@ -7,6 +7,8 @@ extends Node2D
 var current_sand = 0
 var gathering_power = 1
 
+@onready var gathering_sounds = [$GatheringSound1, $GatheringSound2, $GatheringSound3, $GatheringSound4]
+
 func _ready():
 	$'../EventManager'.block_clicked.connect(on_block_clicked)
 	$'../EventManager'.block_hovered.connect(on_block_hovered)
@@ -14,6 +16,7 @@ func _ready():
 func on_block_clicked(block_type, layer, coordinates, screen_coordinates, wall_click):
 	if block_type == 0 && !wall_click && !building_manager.build_mode:
 		increase_sand()
+		gathering_sounds[randi_range(0, len(gathering_sounds) - 1)].play()
 		create_gathering_particles(screen_coordinates)
 		tile_map.erase_sand(layer, coordinates)
 
