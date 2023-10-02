@@ -170,7 +170,8 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 		tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x, building_coordinates[0].y - 8), 1, Vector2i(6, 1))
 		tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 8), 1, Vector2i(6, 0))
 		tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 8), 1, Vector2i(10, 1))
-		tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), 1, Vector2i(10, 0))
+
+		tile_map.set_cell(layer + 6, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), 1, Vector2i(10, 0))
 	update_price()
 	if !infinite_build_mode:
 		set_build_mode('')
