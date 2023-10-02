@@ -264,10 +264,6 @@ func destroy_buildings(water_level):
 			tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 8), -1)
 			tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + 1, building_coordinates[0].y - 8), -1)
 
-			if b.type == "DRILL":
-				tile_map.set_cell(layer + 5, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), -1)
-			elif b.type == "FACTORY":
-				tile_map.set_cell(layer + 6, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), -1)
-
+			tile_map.set_cell(layer + 6, Vector2i(building_coordinates[0].x + x_offset, building_coordinates[0].y + 1 - 12), -1)
 
 			$BuildingsContainer.remove_child(b)
