@@ -35,7 +35,7 @@ func factory_update():
 		bolt.texture = load("res://resources/bolt.png")
 		bolt.z_index = 1000
 		$/root/MainScene/GameManager/BuildingManager/MessagesContainer.add_child(bolt)
-		get_tree().create_tween().bind_node(self).tween_property(bolt, "position", bolt_pos + Vector2(0, -30), 2)
-		var bolt_tween = get_tree().create_tween().bind_node(self)
+		get_tree().create_tween().bind_node(bolt).tween_property(bolt, "position", bolt_pos + Vector2(0, -30), 2)
+		var bolt_tween = get_tree().create_tween().bind_node(bolt)
 		bolt_tween.tween_property(bolt, "modulate", Color(1, 1, 1, 0), 2)
 		bolt_tween.tween_callback(bolt.queue_free)
