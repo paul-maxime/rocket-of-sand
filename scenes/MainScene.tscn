@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=32 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -27,6 +27,8 @@
 [ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
 [ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
+[ext_resource type="Material" uid="uid://cibcewx1u1kvy" path="res://materials/BuildPreview.tres" id="28_8q82k"]
+[ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="29_3o8ly"]
 
 [sub_resource type="Gradient" id="Gradient_gsdcp"]
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
@@ -127,3 +129,8 @@ volume_db = -12.0
 autoplay = true
 script = ExtResource("25_1uvn2")
 next_music = ExtResource("26_xpaq0")
+
+[node name="ShaderLoader" type="Sprite2D" parent="."]
+z_index = -1
+material = ExtResource("28_8q82k")
+texture = ExtResource("29_3o8ly")
