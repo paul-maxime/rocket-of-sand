@@ -14,8 +14,8 @@ var building_type = ''
 var last_error = ''
 var error_color = Color.WHITE
 
-var drill_price = 10
-var factory_price = 20
+var drill_price = 30
+var factory_price = 10
 
 func _ready():
 	var event_manager = $'../EventManager'
