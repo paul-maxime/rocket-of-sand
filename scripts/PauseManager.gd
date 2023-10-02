@@ -20,7 +20,6 @@ func on_visibility_change(_event):
 	var document: JavaScriptObject = JavaScriptBridge.get_interface("document")
 	if document != null:
 		var visibility = JavaScriptBridge.get_interface("document").visibilityState
-		print(visibility)
 		if visibility == "hidden":
 			get_tree().paused = true
 		else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=31 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
 [ext_resource type="AudioStream" uid="uid://cofmwwpdc3gf" path="res://resources/sounds/digging.ogg" id="11_gfqu8"]
-[ext_resource type="Texture2D" uid="uid://co1dhywe57swo" path="res://resources/rocket.png" id="11_nuyi2"]
 [ext_resource type="AudioStream" uid="uid://bu2dgvpyagycv" path="res://resources/sounds/metal.ogg" id="12_oqhcg"]
 [ext_resource type="AudioStream" uid="uid://xf3iqkn6uxpm" path="res://resources/sounds/sand1.ogg" id="14_ig4sr"]
 [ext_resource type="AudioStream" uid="uid://cxj6p65v5jv8x" path="res://resources/sounds/sand2.ogg" id="15_uxr5b"]
@@ -27,7 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://bo3dixkxo382l" path="res://resources/musics/ocean-princess.ogg" id="24_5jh30"]
 [ext_resource type="Script" path="res://scripts/MusicPlayer.gd" id="25_1uvn2"]
 [ext_resource type="AudioStream" uid="uid://do3rtyo4vyvox" path="res://resources/musics/treacherous-waters.ogg" id="26_xpaq0"]
-[ext_resource type="Material" uid="uid://bo7yddghhmj18" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
+[ext_resource type="Material" path="res://materials/BuildPreviewForLoading.tres" id="28_jnupe"]
 [ext_resource type="Texture2D" uid="uid://b7ns77m4ueyg8" path="res://resources/factory.png" id="29_3o8ly"]
 
 [sub_resource type="Gradient" id="Gradient_gsdcp"]
@@ -52,7 +51,6 @@ blend_mode = 1
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("rocket")]
 script = ExtResource("5_sc47u")
-game_duration = 1.0
 rocket = NodePath("../Rocket")
 rocket_states = Array[CompressedTexture2D]([ExtResource("3_npj2q"), ExtResource("4_m8r0k"), ExtResource("5_euwcr"), ExtResource("6_hfs1a"), ExtResource("7_5urc3"), ExtResource("8_s342a")])
 
@@ -110,15 +108,16 @@ zoom = Vector2(2, 2)
 script = ExtResource("10_obdi1")
 
 [node name="Rocket" type="Node2D" parent="."]
-position = Vector2(0, -147)
+position = Vector2(0, -142)
 
 [node name="Sprite" type="Sprite2D" parent="Rocket"]
 z_index = 6
-texture = ExtResource("11_nuyi2")
+texture = ExtResource("8_s342a")
 
 [node name="PointLight" type="PointLight2D" parent="Rocket"]
 visible = false
 position = Vector2(0, 60)
+color = Color(1, 0.862745, 0.862745, 1)
 energy = 0.5
 texture = SubResource("GradientTexture2D_p0amq")
 

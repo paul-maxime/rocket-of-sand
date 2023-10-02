@@ -8,13 +8,14 @@ extends Node2D
 var time = 0
 var rocket_progress = 0
 var rocket_price = 100
+var is_game_won = false
 
 enum states {PLAYING, WIN, DEAD}
 var game_state = states.PLAYING
 
 @onready var water = $"../Island"
 @onready var gathering_manager = $'GatheringManager'
-@onready var interface_manager = $'/root/MainScene/CanvasLayer'
+@onready var interface_layer = $'/root/MainScene/CanvasLayer'
 
 func _ready():
 	randomize()
@@ -44,20 +45,31 @@ func _process(deltaTime):
 func build_rocket():
 	if (gathering_manager.current_sand >= rocket_price):
 		var new_price = rocket_price * 5
-		rocket_progress = min(rocket_progress + 1, rocket_states.size())
-		interface_manager.update_rocket_price(new_price, rocket_states[min(rocket_progress, rocket_states.size() - 1)])
+		rocket_progress += 1
+		interface_layer.update_rocket_price(new_price, rocket_states[min(rocket_progress, rocket_states.size() - 1)])
 		rocket.get_node("Sprite").texture = rocket_states[rocket_progress - 1]
 		rocket.get_node("PointLight").visible = true
+		rocket.get_node("PointLight").texture_scale = 1.0 + ((rocket_progress - 1.0) / 5.0)
+		rocket.get_node("PointLight").energy = 0.5 + (rocket_progress - 1.0) / 20.0
 		gathering_manager.add_sand(-rocket_price)
 		rocket_price = new_price
 		$UpgradeRocketSound.play()
+		if rocket_progress >= len(rocket_states):
+			win_the_game()
+
+func win_the_game():
+	is_game_won = true
+	interface_layer.visible = false
+	rocket.z_index = 50
+	var tween = get_tree().create_tween()
+	tween.tween_property(rocket, "position", Vector2(rocket.position.x, rocket.position.y - 1000), 10).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 
 func _input(event):
 	if event is InputEventKey && event.keycode == KEY_R && game_state == states.DEAD:
 		get_tree().reload_current_scene()
 
 func check_game_over(water_level):
-	if water_level == game_over_layer:
+	if water_level == game_over_layer and not is_game_won:
 		game_state = states.DEAD
 		rocket.visible = false
 		var game_over_tween = get_tree().create_tween()
