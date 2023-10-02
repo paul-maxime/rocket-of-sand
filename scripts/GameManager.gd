@@ -49,7 +49,7 @@ func _process(deltaTime):
 		test_weird_reload = false
 		get_tree().reload_current_scene()
 		return
-	if game_state == states.WAITING:
+	if game_state == states.WAITING or game_state == states.WIN:
 		return
 	var time_by_layer = game_duration / game_over_layer
 	time += deltaTime;
@@ -76,7 +76,6 @@ func build_rocket():
 func win_the_game():
 	game_state = states.WIN
 	interface_layer.get_node("Panel").visible = false
-	rocket.z_index = 50
 	$/root/MainScene/Camera.start_following_rocket(rocket)
 	await get_tree().create_timer(1).timeout
 	var tween = get_tree().create_tween().bind_node(self)
