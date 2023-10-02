@@ -15,7 +15,7 @@ func _ready():
 	$'../EventManager'.block_hovered.connect(on_block_hovered)
 
 func on_block_clicked(block_type, layer, coordinates, screen_coordinates, wall_click):
-	if block_type == 0 && !wall_click && !building_manager.build_mode:
+	if block_type == 0 && !wall_click && !building_manager.build_mode && !building_manager.build_success:
 		$/root/MainScene/GameManager.start_playing()
 		increase_sand()
 		gathering_sounds[randi_range(0, len(gathering_sounds) - 1)].play()

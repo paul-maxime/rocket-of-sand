@@ -8,6 +8,7 @@ extends Node2D
 
 var preview
 var build_mode = false
+var build_success = false
 var infinite_build_mode = false
 var building_type = ''
 var last_error = ''
@@ -97,6 +98,7 @@ func spawn_error_message(text):
 
 func place_building(block_type, layer, coordinate, _screen_coordinate, wall_click):
 	error_color = Color('#D44848')
+	build_success = false
 	if !build_mode:
 		return
 	if !check_price():
@@ -172,6 +174,7 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 	update_price()
 	if !infinite_build_mode:
 		set_build_mode('')
+		build_success = true
 
 func check_price():
 	match building_type:
