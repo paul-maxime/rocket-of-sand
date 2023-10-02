@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://c4k4tq44nle8l"]
+[gd_scene load_steps=31 format=3 uid="uid://c4k4tq44nle8l"]
 
 [ext_resource type="PackedScene" uid="uid://twwxhanjo1e0" path="res://scenes/Island.tscn" id="1_1buq4"]
 [ext_resource type="Texture2D" uid="uid://ds7dp2b62cs00" path="res://resources/rocket1.png" id="3_npj2q"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c5xo52vdjagjm" path="res://scenes/GatheringParticles.tscn" id="9_xv6p5"]
 [ext_resource type="Script" path="res://scripts/Camera.gd" id="10_obdi1"]
 [ext_resource type="AudioStream" uid="uid://cofmwwpdc3gf" path="res://resources/sounds/digging.ogg" id="11_gfqu8"]
+[ext_resource type="PackedScene" uid="uid://ctyhjnha8f2m6" path="res://scenes/FactoryErrorMessage.tscn" id="12_842ln"]
 [ext_resource type="AudioStream" uid="uid://bu2dgvpyagycv" path="res://resources/sounds/metal.ogg" id="12_oqhcg"]
 [ext_resource type="AudioStream" uid="uid://xf3iqkn6uxpm" path="res://resources/sounds/sand1.ogg" id="14_ig4sr"]
 [ext_resource type="AudioStream" uid="uid://cxj6p65v5jv8x" path="res://resources/sounds/sand2.ogg" id="15_uxr5b"]
@@ -56,8 +57,11 @@ rocket_states = Array[CompressedTexture2D]([ExtResource("3_npj2q"), ExtResource(
 [node name="BuildingManager" type="Node2D" parent="GameManager"]
 script = ExtResource("6_x8doe")
 building_prefab = ExtResource("4_7bn8d")
+factory_error_message = ExtResource("12_842ln")
 
 [node name="BuildingsContainer" type="Node2D" parent="GameManager/BuildingManager"]
+
+[node name="MessagesContainer" type="Node2D" parent="GameManager/BuildingManager"]
 
 [node name="PlaceDrillSound" type="AudioStreamPlayer" parent="GameManager/BuildingManager"]
 stream = ExtResource("11_gfqu8")

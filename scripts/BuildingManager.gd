@@ -4,11 +4,13 @@ extends Node2D
 @onready var gathering_manager = $'../GatheringManager'
 @onready var interface_manager = $'/root/MainScene/CanvasLayer'
 @export var building_prefab: PackedScene
+@export var factory_error_message: PackedScene
 
 var preview
 var build_mode = false
 var infinite_build_mode = false
 var building_type = ''
+var has_water = false
 
 var drill_price = 10
 var factory_price = 20
@@ -45,7 +47,7 @@ func check_free_space(layer, coordinate):
 func get_valid_coordinates(block_type, layer, coordinate, wall_click):
 	if (wall_click || block_type != 0):
 		return []
-	var has_water = false
+	has_water = false
 	for ground_coord in [coordinate, coordinate + Vector2i(1, 0), coordinate + Vector2i(abs(coordinate.y % 2), 1), coordinate + Vector2i(abs(coordinate.y % 2), -1)]:
 		var ground_cell = tile_map.get_cell_tile_data(layer, ground_coord)
 		if (ground_cell == null || ground_cell.terrain != 0):
@@ -79,6 +81,15 @@ func place_building(block_type, layer, coordinate, _screen_coordinate, wall_clic
 		return
 	var building_coordinates = get_valid_coordinates(block_type, layer, coordinate, wall_click)
 	if (building_coordinates == []):
+		if !has_water and building_type == "FACTORY":
+			var message = factory_error_message.instantiate()
+			var mouse = get_global_mouse_position()
+			message.position = mouse
+			$MessagesContainer.add_child(message)
+			get_tree().create_tween().tween_property(message, "position", mouse + Vector2(0, -30), 2)
+			var message_fade_out = get_tree().create_tween()
+			message_fade_out.tween_property(message, "modulate", Color(1, 1, 1, 0), 2)
+			message_fade_out.tween_callback(message.queue_free)
 		return
 	var new_building: Building = building_prefab.instantiate()
 	new_building.gathering_manager = gathering_manager
