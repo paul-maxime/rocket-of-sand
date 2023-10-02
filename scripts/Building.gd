@@ -29,3 +29,13 @@ func factory_update():
 	while update_timer > factory_ticks_speed:
 		gathering_manager.update_power(1)
 		update_timer -= factory_ticks_speed
+		var bolt_pos = position + Vector2(10, -30)
+		var bolt = Sprite2D.new()
+		bolt.position = bolt_pos
+		bolt.texture = load("res://resources/bolt.png")
+		bolt.z_index = 1000
+		$/root/MainScene/GameManager/BuildingManager/MessagesContainer.add_child(bolt)
+		get_tree().create_tween().tween_property(bolt, "position", bolt_pos + Vector2(0, -30), 2)
+		var bolt_tween = get_tree().create_tween()
+		bolt_tween.tween_property(bolt, "modulate", Color(1, 1, 1, 0), 2)
+		bolt_tween.tween_callback(bolt.queue_free)
