@@ -14,7 +14,7 @@ signal the_water_rises(water_level)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	water_material = tile_set.get_source(1).get_tile_data(Vector2i(1, 0), 0).material
-	update_water_offset(0)
+	update_water_offset(0.9)
 	increase_water_level()
 
 func update_water_offset(percent):

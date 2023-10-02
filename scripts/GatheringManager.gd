@@ -16,6 +16,7 @@ func _ready():
 
 func on_block_clicked(block_type, layer, coordinates, screen_coordinates, wall_click):
 	if block_type == 0 && !wall_click && !building_manager.build_mode:
+		$/root/MainScene/GameManager.start_playing()
 		increase_sand()
 		gathering_sounds[randi_range(0, len(gathering_sounds) - 1)].play()
 		create_gathering_particles(screen_coordinates)

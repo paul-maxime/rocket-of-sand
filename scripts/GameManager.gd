@@ -9,8 +9,8 @@ var time = 0
 var rocket_progress = 0
 var rocket_price = 100
 
-enum states {PLAYING, WIN, DEAD}
-var game_state = states.PLAYING
+enum states {WAITING, PLAYING, WIN, DEAD}
+var game_state = states.WAITING
 var restart_with_left_click = false
 
 @onready var water = $"../Island"
@@ -19,10 +19,15 @@ var restart_with_left_click = false
 
 func _ready():
 	randomize()
-	increase_intensity_over_time()
 	$'/root/MainScene/CanvasLayer/Panel/BuyRocketButton'.pressed.connect(build_rocket)
 	rocket.get_child(0).texture = null
 	water.the_water_rises.connect(check_game_over)
+
+func start_playing():
+	if game_state == states.WAITING:
+		game_state = states.PLAYING
+		increase_intensity_over_time()
+		$/root/MainScene/MusicPlayer.play()
 
 func increase_intensity_over_time():
 	var light_tween = get_tree().create_tween()
@@ -35,6 +40,8 @@ func update_waves(value: float):
 	water.water_material.set_shader_parameter("Ampliture", value)
 
 func _process(deltaTime):
+	if game_state == states.WAITING:
+		return
 	var time_by_layer = game_duration / game_over_layer
 	time += deltaTime;
 	if (time >= time_by_layer):

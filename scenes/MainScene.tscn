@@ -125,6 +125,5 @@ texture = SubResource("GradientTexture2D_p0amq")
 [node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("24_5jh30")
 volume_db = -12.0
-autoplay = true
 script = ExtResource("25_1uvn2")
 next_music = ExtResource("26_xpaq0")
