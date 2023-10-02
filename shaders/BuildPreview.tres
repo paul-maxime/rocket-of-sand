@@ -1,4 +1,4 @@
-[gd_resource type="VisualShader" load_steps=16 format=3 uid="uid://7owftqndnnsp"]
+[gd_resource type="VisualShader" load_steps=14 format=3 uid="uid://7owftqndnnsp"]
 
 [sub_resource type="VisualShaderNodeFloatFunc" id="VisualShaderNodeFloatFunc_f6d42"]
 function = 0
@@ -16,12 +16,6 @@ default_input_values = [1, -1.0, 2, 1.0, 3, 0.4, 4, 0.6]
 
 [sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_pc2g7"]
 operator = 2
-
-[sub_resource type="VisualShaderNodeSwitch" id="VisualShaderNodeSwitch_hj3vf"]
-default_input_values = [0, false, 1, 0.0, 2, 0.0]
-
-[sub_resource type="VisualShaderNodeBooleanParameter" id="VisualShaderNodeBooleanParameter_1yta7"]
-parameter_name = "ForLoading"
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_6dcvg"]
 parameter_name = "Valid"
@@ -141,7 +135,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-190.119, 123.017)
+graph_offset = Vector2(-53.1798, 107.934)
 mode = 1
 flags/light_only = false
 nodes/fragment/0/position = Vector2(940, 220)
@@ -171,8 +165,4 @@ nodes/fragment/13/node = SubResource("VisualShaderNodeRemap_yvynb")
 nodes/fragment/13/position = Vector2(300, 460)
 nodes/fragment/14/node = SubResource("VisualShaderNodeFloatOp_pc2g7")
 nodes/fragment/14/position = Vector2(500, 380)
-nodes/fragment/16/node = SubResource("VisualShaderNodeSwitch_hj3vf")
-nodes/fragment/16/position = Vector2(680, 440)
-nodes/fragment/17/node = SubResource("VisualShaderNodeBooleanParameter_1yta7")
-nodes/fragment/17/position = Vector2(240, 680)
-nodes/fragment/connections = PackedInt32Array(2, 0, 6, 1, 3, 0, 6, 2, 4, 0, 6, 0, 6, 0, 7, 1, 5, 0, 7, 0, 7, 0, 0, 0, 7, 0, 8, 0, 9, 0, 11, 0, 12, 0, 11, 1, 11, 0, 10, 0, 10, 0, 13, 0, 8, 3, 14, 0, 13, 0, 14, 1, 17, 0, 16, 0, 14, 0, 16, 2, 16, 0, 0, 1, 14, 0, 0, 1)
+nodes/fragment/connections = PackedInt32Array(2, 0, 6, 1, 3, 0, 6, 2, 4, 0, 6, 0, 6, 0, 7, 1, 5, 0, 7, 0, 7, 0, 0, 0, 7, 0, 8, 0, 9, 0, 11, 0, 12, 0, 11, 1, 11, 0, 10, 0, 10, 0, 13, 0, 8, 3, 14, 0, 13, 0, 14, 1, 14, 0, 0, 1)
